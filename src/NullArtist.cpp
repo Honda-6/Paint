@@ -1,3 +1,3 @@
 #include "NullArtist.h"
 
-void NullArtist::handleConsole() { }
+void NullArtist::handleConsole(HDC hdc) { }

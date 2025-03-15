@@ -8,7 +8,7 @@ public:
     virtual void onMouseLeftUp(HDC hdc, int x, int y) { } 
     virtual void onMouseRightDown(HDC hdc, int x, int y) { }
     virtual void onMouseRightUp(HDC hdc, int x, int y) { }
-    virtual void handleConsole() = 0;
+    virtual void handleConsole(HDC hdc) = 0;
 
     virtual ~Artist() = default;
 };
