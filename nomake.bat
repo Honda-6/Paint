@@ -2,9 +2,6 @@
 
 REM [CONFIGURATION]
 
-REM Source files
-set FILES=Paint.cpp NullArtist.cpp
-
 REM Compiler flags
 set CXXFLAGS=-mwindows -std=c++17
 
@@ -23,8 +20,8 @@ if not exist build (
 
 set SOURCES=
 
-for %%f in (%FILES%) do (
-    set SOURCES=!SOURCES! src\%%f
+for %%f in (src\*.cpp) do (
+    set SOURCES=!SOURCES! %%f
 )
 
 REM Compile with g++
