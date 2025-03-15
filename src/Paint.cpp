@@ -1,8 +1,11 @@
 #include "Core.h"
 #include "Artist.h"
 #include "NullArtist.h"
+#include "BezierRectangleFillArtist.h"
 
-static Artist *artist = new NullArtist();
+// TODO: Return NullArtist again and switch through menu
+// static Artist *artist = new NullArtist();
+static Artist *artist = new BezierRectangleFillArtist();
 
 using namespace std;
 
