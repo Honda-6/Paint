@@ -5,11 +5,11 @@
 #include <iostream>
 
 void HermiteSquareFillArtist::fillSquare(HDC hdc) {
-    int y1 = y;
-    int y2 = y + length;
-    int x1 = x;
-    int x2 = x + length;
-    
+    if (x1 > x2) {
+        std::swap(y1, y2);
+        std::swap(x1, x2);
+    }
+
     for (int x = x1; x <= x2; x++) {
         drawHermite(hdc, x, y1, 0, 0, x, y2, 0, 0, 1000, COLOR_EMERALD_GREEN);
     }
@@ -42,23 +42,34 @@ void HermiteSquareFillArtist::drawHermite(HDC hdc, int x1, int y1, int u1, int v
 }
 
 void HermiteSquareFillArtist::onMouseLeftDown(HDC hdc, int x, int y) {
-    this->x = x;
-    this->y = y;
+    x1 = x;
+    y1 = y;
 }
 
 void HermiteSquareFillArtist::onMouseLeftUp(HDC hdc, int x, int y) {
-    length = abs(this->x - x);
+    x2 = x;
+    int length = abs(x2 - x1);
+    if (y1 > y) {
+        y2 = y1 - length;
+    } else {
+        y2 = y1 + length;
+    }
 
     fillSquare(hdc);
 }
 
 void HermiteSquareFillArtist::handleConsole(HDC hdc) {
     std::cout << "Enter top-left corner's x: ";
-    std::cin >> x;
+    std::cin >> x1;
     std::cout << "Enter top-left corner's y: ";
-    std::cin >> y;
+    std::cin >> y2;
+
+    int length;
     std::cout << "Enter side length: ";
     std::cin >> length;
+
+    x2 = x1 + length;
+    y2 = y1 + length;
 
     fillSquare(hdc);
 }
