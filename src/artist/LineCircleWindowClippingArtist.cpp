@@ -89,10 +89,8 @@ void LineCircleWindowClippingArtist::handleConsole(HDC hdc) {
 
 bool LineCircleWindowClippingArtist::clipLine() {
     // Make coordinate system such that the circle is at (0, 0) to simplify equations.
-    p1.x -= pc.x;
-    p1.y -= pc.y;
-    p2.x -= pc.x;
-    p2.y -= pc.y;
+    p1 = p1 - pc;
+    p2 = p2 - pc;
 
     if (p1.x > p2.x) {
         swap(p1, p2);
@@ -104,39 +102,59 @@ bool LineCircleWindowClippingArtist::clipLine() {
 
     if (norm1 <= r2 && norm2 <= r2) {
         // Undo coordinate system transformation.
-        p1.x += pc.x;
-        p1.y += pc.y;
-        p2.x += pc.x;
-        p2.y += pc.y;
+        p1 = p1 + pc;
+        p2 = p2 + pc;
         return true;
     }
 
-    double m = (p1.y - p2.y) / (p1.x - p2.x);
+    if (p1.x == p2.x) {
+        if (abs(p1.x) > r) {
+            return false;
+        }
 
-    // Quadratic parameters
-    double a = m * m + 1;
-    double b = -2 * m * m * p1.x + 2 * p1.y * m;
-    double c = m * m * p1.x * p1.x + p1.y * p1.y - 2 * p1.y * p1.x * m - r2;
+        if (p1.y > p2.y) {
+            swap(p1, p2);
+            swap(norm1, norm2);
+        }
 
-    if (norm1 > r2) {
-        double x = utils::quadraticRoot(a, b, c, -1);
-        double y = m * (x - p1.x) + p1.y;
-        p1.x = x;
-        p1.y = y;
-    }
+        double y = sqrt(r2 - p1.x * p1.x);
+        
+        if (norm1 > r2) {
+            p1.y = -y;
+        }
 
-    if (norm2 > r2) {
-        double x = utils::quadraticRoot(a, b, c, 1);
-        double y = m * (x - p1.x) + p1.y;
-        p2.x = x;
-        p2.y = y;
+        if (norm2 > r2) {
+            p2.y = y;
+        }
+    } else {
+        double m = (p1.y - p2.y) / (p1.x - p2.x);
+
+        // Quadratic parameters
+        double a = m * m + 1;
+        double b = -2 * m * m * p1.x + 2 * p1.y * m;
+        double c = m * m * p1.x * p1.x + p1.y * p1.y - 2 * p1.y * p1.x * m - r2;
+
+        if (!utils::hasQuadraticRoots(a, b, c)) {
+            return false;
+        }
+
+        if (norm1 > r2) {
+            double x = utils::quadraticRoot(a, b, c, -1);
+            double y = m * (x - p1.x) + p1.y;
+            p1.x = x;
+            p1.y = y;
+        }
+
+        if (norm2 > r2) {
+            double x = utils::quadraticRoot(a, b, c, 1);
+            double y = m * (x - p1.x) + p1.y;
+            p2.x = x;
+            p2.y = y;
+        }
     }
 
     // Undo coordinate system transformation.
-    p1.x += pc.x;
-    p1.y += pc.y;
-    p2.x += pc.x;
-    p2.y += pc.y;
-
+    p1 = p1 + pc;
+    p2 = p2 + pc;
     return true;
 }
