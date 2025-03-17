@@ -1,8 +1,8 @@
 #include "LineCircleWindowClippingArtist.h"
 #include "LineMidpointStrategy.h"
-#include "Palette.h"
-#include <cassert>
 // #include "CircleMidpointStrategy.h"
+#include "Palette.h"
+#include <iostream>
 
 using namespace std;
 
@@ -48,7 +48,43 @@ void LineCircleWindowClippingArtist::onMouseLeftUp(HDC hdc, int x, int y) {
 }
 
 void LineCircleWindowClippingArtist::handleConsole(HDC hdc) {
-    // TODO: Add console input handling
+    pc.x = pc.y = r = -1;
+
+    while (r <= 0 || pc.x < 0 || pc.y < 0) {
+        cout << "Enter window (circle) center xc, yc, and radius: ";
+        cin >> pc.x >> pc.y >> r;
+    }
+
+    // TODO: Remove drawCircle and use CircleStrategy once implemented.
+    utils::drawCircle(hdc, pc.x, pc.y, r, COLOR_CRIMSON_RED);
+    // circle->draw(hdc, pc.x, pc.y, r, COLOR_CRIMSON_RED);
+
+    bool shouldInputLine = true;
+    while (shouldInputLine) {
+        cout << "Enter line first point's x: ";
+        cin >> p1.x;
+
+        cout << "Enter line first point's y: ";
+        cin >> p1.y;
+
+        cout << "Enter line second point's x: ";
+        cin >> p2.x;
+
+        cout << "Enter line second point's y: ";
+        cin >> p2.y;
+
+        line->draw(hdc, round(p1.x), round(p1.y), round(p2.x), round(p2.y), COLOR_LIGHT_GRAY);
+        
+        if (clipLine()) {
+            line->draw(hdc, round(p1.x), round(p1.y), round(p2.x), round(p2.y), COLOR_BLACK);
+        }
+
+        char answer;
+        cout << "Do you want to add more lines? (Y/n) ";
+        cin >> answer;
+        
+        shouldInputLine = tolower(answer) != 'n';
+    }
 }
 
 bool LineCircleWindowClippingArtist::clipLine() {
