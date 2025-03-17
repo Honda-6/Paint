@@ -4,10 +4,10 @@
 
 class CardinalSplineArtist : public Artist {
 private:
-    std::vector<utils::Point> control_points;
+    std::vector<utils::Point<int>> control_points;
     int c = 1;
 
-    void drawCardinalSpline(HDC hdc, std::vector<utils::Point> pts, double c ,COLORREF color);
+    void drawCardinalSpline(HDC hdc, std::vector<utils::Point<int>> pts, double c ,COLORREF color);
 
 public:
     void onMouseLeftUp(HDC hdc, int x, int y) override;

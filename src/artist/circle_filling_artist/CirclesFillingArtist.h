@@ -4,7 +4,7 @@
 
 class CirclesFillingArtist: public CircleFillingArtist {
 private:
-    void fillCircle(HDC hdc, unsigned int radius, utils::Point (*firstOctant)(utils::Point,int,int),utils::Point (*secondOctant)(utils::Point,int,int), COLORREF color) override;
+    void fillCircle(HDC hdc, unsigned int radius, utils::Point<int> (*firstOctant)(utils::Point<int>,int,int),utils::Point<int> (*secondOctant)(utils::Point<int>,int,int), COLORREF color) override;
 public:
     ~CirclesFillingArtist() = default;
 };

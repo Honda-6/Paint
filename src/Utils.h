@@ -5,23 +5,44 @@
 #include <cmath>
 
 namespace utils {
+    template <typename T>
     struct Point {
-        int x, y;
-        Point(int x = 0, int y = 0) : x(x) , y(y) {}
+        T x, y;
+        Point(T x = 0, T y = 0) : x(x) , y(y) {}
+
+        T normSquared() {
+            return x * x + y * y;
+        }
+
+        Point<T> operator+(const Point<T>& p) {
+            Point<T> q;
+            q.x = x + p.x;
+            q.y = y + p.y;
+            return q;
+        }
+
+        Point<T> operator-(const Point<T>& p) {
+            Point<T> q;
+            q.x = x - p.x;
+            q.y = y - p.y;
+            return q;
+        }
     };
 
     struct Slope {
         double u, v;
         Slope() : u(0), v(0) {}
-        Slope(Point p1, Point p2, double c) {
+        Slope(Point<int> p1, Point<int> p2, double c) {
             u = c / 2 * (p2.x - p1.x);
             v = c / 2 * (p2.y - p1.y);
         }
     };
-    static unsigned int distanceSquared(Point a, Point b)
-    {
+
+    template <typename T>
+    static T distanceSquared(Point<T> a, Point<T> b) {
         return (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
     }
+
     static void drawHermite(HDC hdc, int x1, int y1, int u1, int v1, int x2, int y2, int u2, int v2, int numpoints, COLORREF color) {
         Matrix<int, 4, 4> H({
                                     { 2,  1, -2,  1},
