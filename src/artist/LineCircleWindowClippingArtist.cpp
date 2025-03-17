@@ -1,0 +1,106 @@
+#include "LineCircleWindowClippingArtist.h"
+#include "LineMidpointStrategy.h"
+#include "Palette.h"
+#include <cassert>
+// #include "CircleMidpointStrategy.h"
+
+using namespace std;
+
+LineCircleWindowClippingArtist::LineCircleWindowClippingArtist() {
+    state = LINE_CIRCLE_WINDOW_CLIPPING_STATE_CIRCLE_WINDOW;
+    line = new LineMidpointStrategy();
+    // circle = new CircleMidpointStrategy();
+}
+
+LineCircleWindowClippingArtist::~LineCircleWindowClippingArtist() {
+    delete line;
+    // delete circle;
+}
+
+void LineCircleWindowClippingArtist::onMouseLeftDown(HDC hdc, int x, int y) {
+    if (state == LINE_CIRCLE_WINDOW_CLIPPING_STATE_CIRCLE_WINDOW) {
+        pc.x = x;
+        pc.y = y;
+    } else {
+        p1.x = x;
+        p1.y = y;
+    }
+}
+
+void LineCircleWindowClippingArtist::onMouseLeftUp(HDC hdc, int x, int y) {
+    p2.x = x;
+    p2.y = y;
+
+    if (state == LINE_CIRCLE_WINDOW_CLIPPING_STATE_CIRCLE_WINDOW) {
+        r = sqrt(utils::distanceSquared(pc, p2));
+
+        // TODO: Remove drawCircle and use CircleStrategy once implemented.
+        utils::drawCircle(hdc, pc.x, pc.y, r, COLOR_CRIMSON_RED);
+        // circle->draw(hdc, pc.x, pc.y, r, COLOR_CRIMSON_RED);
+        state = LINE_CIRCLE_WINDOW_CLIPPING_STATE_LINE_CLIPPING;
+    } else {
+        line->draw(hdc, round(p1.x), round(p1.y), round(p2.x), round(p2.y), COLOR_LIGHT_GRAY);
+        
+        if (clipLine()) {
+            line->draw(hdc, round(p1.x), round(p1.y), round(p2.x), round(p2.y), COLOR_BLACK);
+        }
+    }
+}
+
+void LineCircleWindowClippingArtist::handleConsole(HDC hdc) {
+    // TODO: Add console input handling
+}
+
+bool LineCircleWindowClippingArtist::clipLine() {
+    // Make coordinate system such that the circle is at (0, 0) to simplify equations.
+    p1.x -= pc.x;
+    p1.y -= pc.y;
+    p2.x -= pc.x;
+    p2.y -= pc.y;
+
+    if (p1.x > p2.x) {
+        swap(p1, p2);
+    }
+
+    double r2 = r * r;
+    double norm1 = p1.normSquared();
+    double norm2 = p2.normSquared();
+
+    if (norm1 <= r2 && norm2 <= r2) {
+        // Undo coordinate system transformation.
+        p1.x += pc.x;
+        p1.y += pc.y;
+        p2.x += pc.x;
+        p2.y += pc.y;
+        return true;
+    }
+
+    double m = (p1.y - p2.y) / (p1.x - p2.x);
+
+    // Quadratic parameters
+    double a = m * m + 1;
+    double b = -2 * m * m * p1.x + 2 * p1.y * m;
+    double c = m * m * p1.x * p1.x + p1.y * p1.y - 2 * p1.y * p1.x * m - r2;
+
+    if (norm1 > r2) {
+        double x = utils::quadraticRoot(a, b, c, -1);
+        double y = m * (x - p1.x) + p1.y;
+        p1.x = x;
+        p1.y = y;
+    }
+
+    if (norm2 > r2) {
+        double x = utils::quadraticRoot(a, b, c, 1);
+        double y = m * (x - p1.x) + p1.y;
+        p2.x = x;
+        p2.y = y;
+    }
+
+    // Undo coordinate system transformation.
+    p1.x += pc.x;
+    p1.y += pc.y;
+    p2.x += pc.x;
+    p2.y += pc.y;
+
+    return true;
+}
