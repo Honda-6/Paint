@@ -11,6 +11,7 @@
 #include "circle_filling_artist/CirclesFillingArtist.h"
 #include "circle_filling_artist/CircleLineFillingArtist.h"
 #include "LineCircleWindowClippingArtist.h"
+#include "PointCircleWindowClippingArtist.h"
 
 using namespace std;
 
@@ -134,7 +135,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle LineStrategy Clipping in Square
         break;
     case SHAPES_CLIPPING_CIRCLE_POINT:
-        // Handle Point Clipping in Circle
+        *artist = new PointCircleWindowClippingArtist();
         break;
     case SHAPES_CLIPPING_CIRCLE_LINE:
         *artist = new LineCircleWindowClippingArtist();
