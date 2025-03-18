@@ -13,7 +13,7 @@ static utils::Point<int> (*OCTANTS[])(const utils::Point<int>&,int,int) {
     []  (const utils::Point<int> &centre,int x,int y) -> utils::Point<int> {return {centre.x + y, centre.y - x};},      //===>>Point on Oct6
     []  (const utils::Point<int> &centre,int x,int y) -> utils::Point<int> {return {centre.x + y, centre.y + x};},      //===>>Point on Oct7
     []  (const utils::Point<int> &centre,int x,int y) -> utils::Point<int> {return {centre.x + x, centre.y + y};}       //===>>Point on Oct8
-}
+};
 
 enum Octant : unsigned short {
     FIRST_OCTANT,

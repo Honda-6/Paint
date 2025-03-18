@@ -17,7 +17,7 @@ void LineArtist::onMouseLeftUp(HDC hdc, int x, int y)
     x2 = x;
     y2 = y;
 
-    line->draw(hdc, x1, y1, x2, y2, COLOR_TEAL);
+    line->draw(hdc, x1, y1, x2, y2, color);
 }
 
 void LineArtist::handleConsole(HDC hdc)
