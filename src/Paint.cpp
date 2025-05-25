@@ -74,11 +74,11 @@ int APIENTRY WinMain(HINSTANCE hi, HINSTANCE pi, LPSTR c, int ns)
     wc.hIcon = LoadIcon(NULL, IDI_WINLOGO);
     wc.hInstance = hi;
     wc.lpfnWndProc = WndProc;
-    wc.lpszClassName = "MyClass";
+    wc.lpszClassName = LPCSTR("MyClass");
     wc.lpszMenuName = NULL;
     wc.style = CS_HREDRAW | CS_VREDRAW;
     RegisterClass(&wc);
-    HWND hwnd = CreateWindow("MyClass", "Hello World", WS_OVERLAPPEDWINDOW, 0, 0, 600, 400, NULL, NULL, hi, 0);
+    HWND hwnd = CreateWindow(LPCSTR("MyClass"), LPCSTR("Paint"), WS_OVERLAPPEDWINDOW, 0, 0, 600, 400, NULL, NULL, hi, 0);
     ShowWindow(hwnd, ns);
     UpdateWindow(hwnd);
     MSG msg;
