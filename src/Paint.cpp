@@ -1,6 +1,8 @@
 #include "Core.h"
 #include "Artist.h"
 #include "NullArtist.h"
+#include "BezierRectangleFillArtist.h"
+#include "HermiteSquareFillArtist.h"
 #include "DirectEllipseDrawingArtist.h"
 #include "DirectPolarEllipseDrawingArtist.h"
 #include "OptimizedPolarEllipseDrawingArtist.h"
