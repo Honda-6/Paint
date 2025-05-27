@@ -3,8 +3,9 @@
 #include "NullArtist.h"
 #include "DirectEllipseDrawingArtist.h"
 #include "DirectPolarEllipseDrawingArtist.h"
+#include "OptimizedPolarEllipseDrawingArtist.h"
 
-static Artist *artist = new DirectPolarEllipseDrawingArtist();
+static Artist *artist = new OptimizedPolarEllipseDrawingArtist();
 
 using namespace std;
 
