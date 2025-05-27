@@ -20,7 +20,7 @@ if not exist build (
 
 set SOURCES=
 
-for %%f in (src\*.cpp) do (
+for /r src %%f in (*.cpp) do (
     set SOURCES=!SOURCES! %%f
 )
 
