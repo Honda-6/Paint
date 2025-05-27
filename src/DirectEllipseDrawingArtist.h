@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <iostream>
 
-class EllipseDrawingArtist: public Artist
+class DirectEllipseDrawingArtist: public Artist
 {
 private:
     Point centre;
@@ -15,5 +15,5 @@ private:
 public:
     void onMouseLeftDown(HDC hdc, int x, int y) override;
     void handleConsole(HDC hdc) override;
-    ~EllipseDrawingArtist() = default;
+    ~DirectEllipseDrawingArtist() = default;
 };

@@ -1,8 +1,8 @@
-#include "EllipseDrawingArtist.h"
+#include "DirectEllipseDrawingArtist.h"
 
 
 
-void EllipseDrawingArtist::drawEllipse(HDC hdc)
+void DirectEllipseDrawingArtist::drawEllipse(HDC hdc)
 {
     double x,y;
     
@@ -32,7 +32,7 @@ void EllipseDrawingArtist::drawEllipse(HDC hdc)
     }
 }
 
-void EllipseDrawingArtist::onMouseLeftDown(HDC hdc, int x, int y)
+void DirectEllipseDrawingArtist::onMouseLeftDown(HDC hdc, int x, int y)
 {
     static int clicks = 0;
     Point vertix = {x,y,RGB(0,0,0)};
@@ -52,7 +52,7 @@ void EllipseDrawingArtist::onMouseLeftDown(HDC hdc, int x, int y)
 
 }
 
-void EllipseDrawingArtist::handleConsole(HDC hdc)
+void DirectEllipseDrawingArtist::handleConsole(HDC hdc)
 {
     int x,y,a,b;
     std::cout << "Enter the centre coordinates of the ellipse: ";
