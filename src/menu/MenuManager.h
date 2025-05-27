@@ -1,6 +1,6 @@
 #include "Menu.h"
-#include "Artist.h"
-#include "HermiteSquareFillArtist.h"
+#include "../Artist.h"
+#include "../HermiteSquareFillArtist.h"
 #include <map>
 
 using namespace std;

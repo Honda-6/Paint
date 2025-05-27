@@ -3,7 +3,7 @@
 #include "NullArtist.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
-#include "MenuManager.h"
+#include "./menu/MenuManager.h"
 
 // TODO: Return NullArtist again and switch through menu
 static Artist *artist = new NullArtist();

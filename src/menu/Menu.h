@@ -1,9 +1,9 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "Core.h"
+#include "../Core.h"
 #include "ColorPicker.h"
-#include "Artist.h"
+#include "../Artist.h"
 
 using namespace std;
 
