@@ -3,7 +3,7 @@
 
 #include "../Core.h"
 #include "ColorPicker.h"
-#include "../Artist.h"
+#include "../artist/Artist.h"
 
 using namespace std;
 

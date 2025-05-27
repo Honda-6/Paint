@@ -1,6 +1,6 @@
 #include "HermiteSquareFillArtist.h"
 #include "Matrix.h"
-#include "Palette.h"
+#include "../Palette.h"
 #include <cmath>
 #include <iostream>
 

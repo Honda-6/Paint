@@ -1,6 +1,6 @@
 #include "BezierRectangleFillArtist.h"
 #include "Matrix.h"
-#include "Palette.h"
+#include "../Palette.h"
 #include <iostream>
 
 void BezierRectangleFillArtist::fillRectangle(HDC hdc) {

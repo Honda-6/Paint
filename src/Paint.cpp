@@ -1,8 +1,8 @@
 #include "Core.h"
-#include "Artist.h"
-#include "NullArtist.h"
-#include "BezierRectangleFillArtist.h"
-#include "HermiteSquareFillArtist.h"
+#include "./artist/Artist.h"
+#include "./artist/NullArtist.h"
+#include "./artist/BezierRectangleFillArtist.h"
+#include "./artist/HermiteSquareFillArtist.h"
 #include "./menu/MenuManager.h"
 
 // TODO: Return NullArtist again and switch through menu
