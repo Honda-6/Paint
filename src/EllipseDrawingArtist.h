@@ -4,14 +4,16 @@
 #include "Point.h"
 #include <cmath>
 #include <algorithm>
+#include <iostream>
 
 class EllipseDrawingArtist: public Artist
 {
 private:
-    Point centre,major_axis,minor_axis;
+    Point centre;
+    int semiHorizontalLength, semiVerticalLength;
     void drawEllipse(HDC hdc);
 public:
-    virtual void onMouseLeftDown(HDC hdc, int x, int y) override;
-    virtual void onMouseLeftUp(HDC hdc, int x, int y) override;
+    void onMouseLeftDown(HDC hdc, int x, int y) override;
+    void handleConsole(HDC hdc) override;
     ~EllipseDrawingArtist() = default;
 };
