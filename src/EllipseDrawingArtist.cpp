@@ -4,29 +4,28 @@
 
 void EllipseDrawingArtist::drawEllipse(HDC hdc)
 {
-    int aSquared = distance(centre,major_axis), bSquared = distance(centre,minor_axis);
     double x,y;
     
-    if(aSquared > bSquared)
+    if(this->semiHorizontalLength > this->semiVerticalLength)
     {
-        x = std::sqrt(aSquared), y = 0;
+        x = std::sqrt(this->semiHorizontalLength), y = 0;
         drawFourPixels(hdc,centre,round(x),round(y));
         x--;
         while(x > 0)
         {
-            y = std::sqrt(bSquared * (1 - (x*x)/aSquared));
+            y = std::sqrt(this->semiVerticalLength * (1 - (x*x)/this->semiHorizontalLength));
             drawFourPixels(hdc,centre,round(x),round(y));
             x--;
         }
     }
     else
     {
-        y = std::sqrt(bSquared), x = 0;
+        y = std::sqrt(this->semiVerticalLength), x = 0;
         drawFourPixels(hdc,centre,round(x),round(y));
         y--;
         while(y > 0)
         {
-            x = std::sqrt(aSquared * (1 - (y*y)/bSquared));
+            x = std::sqrt(this->semiHorizontalLength * (1 - (y*y)/this->semiVerticalLength));
             drawFourPixels(hdc,centre,round(x),round(y));
             y--;
         }
@@ -36,16 +35,32 @@ void EllipseDrawingArtist::drawEllipse(HDC hdc)
 void EllipseDrawingArtist::onMouseLeftDown(HDC hdc, int x, int y)
 {
     static int clicks = 0;
+    Point vertix = {x,y,RGB(0,0,0)};
     clicks++;
+
     if(clicks == 1)
-        this->centre = {x,y,RGB(0,0,0)};
+        this->centre = vertix;
     else if(clicks == 2)
-        this->major_axis = {x,y,RGB(0,0,0)};
+        this->semiHorizontalLength = distance(vertix,this->centre);
     else
     {
-        this->minor_axis = {x,y,RGB(0,0,0)};
+        this->semiVerticalLength = distance(vertix,this->centre);
         this->drawEllipse(hdc);
-        clicks = 0;
     }
+    
+    clicks %= 3;
 
+}
+
+void EllipseDrawingArtist::handleConsole(HDC hdc)
+{
+    int x,y,a,b;
+    std::cout << "Enter the centre coordinates of the ellipse: ";
+    std::cin >> x >> y;
+    std::cout << "Enter the semi-horizontal axis length: ";
+    std::cin >> a;
+    std::cout << "Enter the semi-vertical axis length: ";
+    std::cin >> b;
+    this->centre = {x,y,RGB(0,0,0)}, this->semiHorizontalLength = a, this->semiVerticalLength = b;
+    this->drawEllipse(hdc);
 }

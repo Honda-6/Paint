@@ -1,8 +1,9 @@
 #include "Core.h"
 #include "Artist.h"
 #include "NullArtist.h"
+#include "EllipseDrawingArtist.h"
 
-static Artist *artist = new NullArtist();
+static Artist *artist = new EllipseDrawingArtist();
 
 using namespace std;
 
