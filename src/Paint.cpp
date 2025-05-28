@@ -2,6 +2,7 @@
 #include "Artist.h"
 #include "NullArtist.h"
 #include "MenuManager.h"
+#include "artist/ellipse_artist/BresenhamsEllipseDrawingArtist.h"
 
 static COLORREF color = RGB(0, 0, 0);
 static Artist *artist = new NullArtist();
