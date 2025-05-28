@@ -3,10 +3,12 @@ project(Paint LANGUAGES CXX RC)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-file(GLOB SOURCES "src/*.cpp")
-file(GLOB HEADERS "src/*.h")
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+file(GLOB_RECURSE HEADERS "src/*.h")
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${RESOURCES})
+
+target_include_directories(${PROJECT_NAME} PRIVATE src src/menu src/artist)
 
 if(MSVC)
     target_compile_definitions(${PROJECT_NAME} PRIVATE WIN32 _WINDOWS)
