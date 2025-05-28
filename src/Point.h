@@ -4,8 +4,10 @@
 
 struct Point
 {
-    int x = 0,y = 0;
-    COLORREF color = RGB(0,0,0);
+    COLORREF color;
+    int x, y;
+    Point(int X = 0, int Y = 0, COLORREF COLOR = RGB(0,0,0))
+        : x{X}, y{Y}, color{COLOR}{}
 };
 
 
