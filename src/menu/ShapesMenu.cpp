@@ -1,9 +1,9 @@
 #include "Menu.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
-#include "LineArtistDDA.h"
-#include "LineArtistMidpoint.h"
-#include "LineArtistParametric.h"
+#include "LineDDAArtist.h"
+#include "LineMidpointArtist.h"
+#include "LineParametricArtist.h"
 
 using namespace std;
 
@@ -36,15 +36,15 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
     {
     case SHAPES_LINE_DDA:
         // Handle DDA line drawing
-        *artist = new LineArtistDDA(); 
+        *artist = new LineDDAArtist();
         break;
     case SHAPES_LINE_MIDPOINT:
         // Handle Midpoint line drawing
-        *artist = new LineArtistMidPoint(); 
+        *artist = new LineMidPointArtist();
         break;
     case SHAPES_LINE_PARAMETRIC:
         // Handle Parametric line drawing
-        *artist = new LineArtistParametric(); 
+        *artist = new LineParametricArtist();
         break;
     case SHAPES_CIRCLE_DIRECT:
         // Handle Direct circle drawing

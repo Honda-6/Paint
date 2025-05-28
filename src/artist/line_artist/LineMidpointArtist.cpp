@@ -1,6 +1,6 @@
-#include "LineArtistMidpoint.h"
+#include "LineMidpointArtist.h"
 
-void LineArtistMidPoint::draw(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color)
+void LineMidPointArtist::draw(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color)
 {
     int dx = x2 - x1;
     int dy = y2 - y1;
@@ -15,7 +15,7 @@ void LineArtistMidPoint::draw(HDC hdc, int x1, int y1, int x2, int y2, COLORREF 
     }
 }
 
-void LineArtistMidPoint::drawHorizontal(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color, bool invert)
+void LineMidPointArtist::drawHorizontal(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color, bool invert)
 {
     if (x1 > x2)
     {
@@ -56,7 +56,7 @@ void LineArtistMidPoint::drawHorizontal(HDC hdc, int x1, int y1, int x2, int y2,
     }
 }
 
-void LineArtistMidPoint::drawVertical(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color)
+void LineMidPointArtist::drawVertical(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color)
 {
     drawHorizontal(hdc, y1, x1, y2, x2, color, true);
 }
