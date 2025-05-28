@@ -6,8 +6,10 @@
 #include "DirectEllipseDrawingArtist.h"
 #include "DirectPolarEllipseDrawingArtist.h"
 #include "OptimizedPolarEllipseDrawingArtist.h"
+#include "BresenhamsEllipseDrawingArtist.h"
 
-static Artist *artist = new OptimizedPolarEllipseDrawingArtist();
+//static Artist *artist = new OptimizedPolarEllipseDrawingArtist();
+static Artist *artist = new BresenhamsEllipseDrawingArtist();
 
 using namespace std;
 
