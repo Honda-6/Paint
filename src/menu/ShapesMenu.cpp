@@ -40,6 +40,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         break;
     case SHAPES_LINE_MIDPOINT:
         // Handle Midpoint line drawing
+        *artist = new LineArtistMidPoint(); 
         break;
     case SHAPES_LINE_PARAMETRIC:
         // Handle Parametric line drawing
