@@ -1,7 +1,7 @@
 #include "Menu.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
-
+#include "artist/polygon_scanline_artist/ConvexFillArtist.h"
 using namespace std;
 
 ShapesMenu::ShapesMenu(Artist **artist)
@@ -62,7 +62,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Circle Filling with Circle
         break;
     case SHAPES_FILLING_CONVEX:
-        // Handle Convex filling
+        *artist = new ConvexFillArtist();
         break;
     case SHAPES_FILLING_NON_CONVEX:
         // Handle Non-Convex filling
@@ -82,6 +82,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Iterative Flood Fill
         break;
     case SHAPES_CARDINAL_SPLINES:
+        *artist = new ConvexFillArtist();
         // Handle Cardinal Splines
         break;
     case SHAPES_ELLIPSE_DIRECT:

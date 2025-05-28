@@ -1,8 +1,13 @@
 #pragma once
 
 #include <vector>
-#include "Artist.h"
-#include "../Point.h"
+#include "../Artist.h"
+
+struct Point
+{
+    int x = 0, y = 0;
+    COLORREF color = RGB(0,0,0);
+};
 
 struct EdgeRec {int xLeft; int xRight;};
 typedef EdgeRec EdgeTable[800];
