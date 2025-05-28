@@ -3,16 +3,23 @@
 #include "NullArtist.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
+#include "MenuManager.h"
 
 // TODO: Return NullArtist again and switch through menu
-// static Artist *artist = new NullArtist();
+static Artist *artist = new NullArtist();
 // static Artist *artist = new BezierRectangleFillArtist();
-static Artist *artist = new HermiteSquareFillArtist();
+// static Artist *artist = new HermiteSquareFillArtist();
+static MenuManager menuManager(&artist);
 
 using namespace std;
 
 LRESULT WINAPI WndProc(HWND hwnd, UINT m, WPARAM wp, LPARAM lp) {
     switch (m) {
+    case WM_CREATE:
+        menuManager.setMenu(hwnd);
+        break;
+    case WM_COMMAND:
+        menuManager.handleInput(hwnd, wp);
     case WM_LBUTTONDOWN:
         {
             HDC hdc = GetDC(hwnd);
