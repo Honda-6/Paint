@@ -1,6 +1,9 @@
 #include "Menu.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
+#include "LineArtistDDA.h"
+#include "LineArtistMidpoint.h"
+#include "LineArtistParametric.h"
 
 using namespace std;
 
@@ -33,6 +36,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
     {
     case SHAPES_LINE_DDA:
         // Handle DDA line drawing
+        *artist = new LineArtistDDA(); 
         break;
     case SHAPES_LINE_MIDPOINT:
         // Handle Midpoint line drawing
