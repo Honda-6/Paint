@@ -3,7 +3,7 @@
 REM [CONFIGURATION]
 
 REM Compiler flags
-set CXXFLAGS=-mwindows -std=c++17
+set CXXFLAGS=-mwindows -std=c++17 -Isrc -Isrc/menu -Isrc/artist
 
 REM Output executable
 set OUTPUT=build\Paint.exe

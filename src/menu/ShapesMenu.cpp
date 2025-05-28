@@ -1,6 +1,6 @@
 #include "Menu.h"
-#include "../artist/BezierRectangleFillArtist.h"
-#include "../artist/HermiteSquareFillArtist.h"
+#include "BezierRectangleFillArtist.h"
+#include "HermiteSquareFillArtist.h"
 
 using namespace std;
 
