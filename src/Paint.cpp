@@ -4,9 +4,10 @@
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
 #include "MenuManager.h"
+#include "artist/ellipse_artist/BresenhamsEllipseDrawingArtist.h"
 
 // TODO: Return NullArtist again and switch through menu
-static Artist *artist = new NullArtist();
+static Artist *artist = new BresenhamsEllipseDrawingArtist();
 // static Artist *artist = new BezierRectangleFillArtist();
 // static Artist *artist = new HermiteSquareFillArtist();
 static MenuManager menuManager(&artist);
