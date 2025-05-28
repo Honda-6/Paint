@@ -6,16 +6,10 @@
 #include "MenuManager.h"
 
 // TODO: Return NullArtist again and switch through menu
+static Artist *artist = new NullArtist();
 // static Artist *artist = new BezierRectangleFillArtist();
 // static Artist *artist = new HermiteSquareFillArtist();
 static MenuManager menuManager(&artist);
-#include "DirectEllipseDrawingArtist.h"
-#include "DirectPolarEllipseDrawingArtist.h"
-#include "OptimizedPolarEllipseDrawingArtist.h"
-#include "BresenhamsEllipseDrawingArtist.h"
-
-//static Artist *artist = new OptimizedPolarEllipseDrawingArtist();
-static Artist *artist = new BresenhamsEllipseDrawingArtist();
 
 using namespace std;
 
