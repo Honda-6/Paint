@@ -44,6 +44,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         break;
     case SHAPES_LINE_PARAMETRIC:
         // Handle Parametric line drawing
+        *artist = new LineArtistParametric(); 
         break;
     case SHAPES_CIRCLE_DIRECT:
         // Handle Direct circle drawing
