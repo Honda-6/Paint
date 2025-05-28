@@ -23,7 +23,7 @@ private:
     void drawCardinalSpline(HDC hdc, std::vector<Point> pts, double c ,COLORREF color);
 
 public:
-    void onMouseLeftDown(HDC hdc, int x, int y) override;
+    void onMouseLeftUp(HDC hdc, int x, int y) override;
     void onMouseRightDown(HDC hdc, int x, int y) override;
     void handleConsole(HDC hdc) override;
 };

@@ -1,5 +1,4 @@
 #include "CardinalSplineArtist.h"
-#include "HermiteSquareFillArtist.h"
 #include "Palette.h"
 #include <iostream>
 #include "Utils.h"
@@ -19,7 +18,7 @@ void CardinalSplineArtist::drawCardinalSpline(HDC hdc, std::vector<Point> pts, d
     }
 }
 
-void CardinalSplineArtist::onMouseLeftDown(HDC hdc, int x, int y) {
+void CardinalSplineArtist::onMouseLeftUp(HDC hdc, int x, int y) {
     control_points.emplace_back(x, y);
 }
 
