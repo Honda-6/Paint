@@ -22,7 +22,7 @@ enum MenuType
 
     CLEAR_SCREEN,
 
-    // Line algorithms
+    // LineStrategy algorithms
     SHAPES_LINE_DDA,
     SHAPES_LINE_MIDPOINT,
     SHAPES_LINE_PARAMETRIC,

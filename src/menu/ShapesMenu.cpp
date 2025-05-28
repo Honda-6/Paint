@@ -1,9 +1,10 @@
 #include "Menu.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
-#include "LineDDAArtist.h"
-#include "LineMidpointArtist.h"
-#include "LineParametricArtist.h"
+#include "LineArtist.h"
+#include "LineDDAStrategy.h"
+#include "LineMidpointStrategy.h"
+#include "LineParametricStrategy.h"
 
 using namespace std;
 
@@ -35,16 +36,25 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
     switch (wp)
     {
     case SHAPES_LINE_DDA:
-        // Handle DDA line drawing
-        *artist = new LineDDAArtist();
+        // Handle LineDDAStrategy line drawing
+        {
+            LineStrategy *line = new LineDDAStrategy();
+            *artist = new LineArtist(line);
+        }
         break;
     case SHAPES_LINE_MIDPOINT:
-        // Handle Midpoint line drawing
-        *artist = new LineMidPointArtist();
+        // Handle LineMidpointStrategy line drawing
+        {
+            LineStrategy *line = new LineMidpointStrategy();
+            *artist = new LineArtist(line);
+        }
         break;
     case SHAPES_LINE_PARAMETRIC:
-        // Handle Parametric line drawing
-        *artist = new LineParametricArtist();
+        // Handle LineParametricStrategy line drawing
+        {
+            LineStrategy *line = new LineMidpointStrategy();
+            *artist = new LineArtist(line);
+        }
         break;
     case SHAPES_CIRCLE_DIRECT:
         // Handle Direct circle drawing
@@ -97,13 +107,13 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Polar Ellipse drawing
         break;
     case SHAPES_ELLIPSE_MIDPOINT:
-        // Handle Midpoint Ellipse drawing
+        // Handle LineMidpointStrategy Ellipse drawing
         break;
     case SHAPES_CLIPPING_RECTANGLE_POINT:
         // Handle Point Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_RECTANGLE_LINE:
-        // Handle Line Clipping in Rectangle
+        // Handle LineStrategy Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_RECTANGLE_POLYGON:
         // Handle Polygon Clipping in Rectangle
@@ -112,13 +122,13 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Point Clipping in Square
         break;
     case SHAPES_CLIPPING_SQUARE_LINE:
-        // Handle Line Clipping in Square
+        // Handle LineStrategy Clipping in Square
         break;
     case SHAPES_CLIPPING_CIRCLE_POINT:
         // Handle Point Clipping in Circle
         break;
     case SHAPES_CLIPPING_CIRCLE_LINE:
-        // Handle Line Clipping in Circle
+        // Handle LineStrategy Clipping in Circle
         break;
     default:
         matches = false;
@@ -131,9 +141,9 @@ HMENU ShapesMenu::createLineMenu()
 {
     HMENU lineMenu = CreateMenu();
 
-    AppendMenu(lineMenu, MF_STRING, SHAPES_LINE_DDA, LPCSTR("DDA"));
-    AppendMenu(lineMenu, MF_STRING, SHAPES_LINE_MIDPOINT, LPCSTR("Midpoint"));
-    AppendMenu(lineMenu, MF_STRING, SHAPES_LINE_PARAMETRIC, LPCSTR("Parametric"));
+    AppendMenu(lineMenu, MF_STRING, SHAPES_LINE_DDA, LPCSTR("LineDDAStrategy"));
+    AppendMenu(lineMenu, MF_STRING, SHAPES_LINE_MIDPOINT, LPCSTR("LineMidpointStrategy"));
+    AppendMenu(lineMenu, MF_STRING, SHAPES_LINE_PARAMETRIC, LPCSTR("LineParametricStrategy"));
 
     return lineMenu;
 }
@@ -144,8 +154,8 @@ HMENU ShapesMenu::createCircleMenu()
     AppendMenu(circleMenu, MF_STRING, SHAPES_CIRCLE_DIRECT, LPCSTR("Direct"));
     AppendMenu(circleMenu, MF_STRING, SHAPES_CIRCLE_POLAR, LPCSTR("Polar"));
     AppendMenu(circleMenu, MF_STRING, SHAPES_CIRCLE_ITERATIVE_POLAR, LPCSTR("Iterative Polar"));
-    AppendMenu(circleMenu, MF_STRING, SHAPES_CIRCLE_MIDPOINT, LPCSTR("Midpoint"));
-    AppendMenu(circleMenu, MF_STRING, SHAPES_CIRCLE_MODIFIED_MIDPOINT, LPCSTR("Modified Midpoint"));
+    AppendMenu(circleMenu, MF_STRING, SHAPES_CIRCLE_MIDPOINT, LPCSTR("LineMidpointStrategy"));
+    AppendMenu(circleMenu, MF_STRING, SHAPES_CIRCLE_MODIFIED_MIDPOINT, LPCSTR("Modified LineMidpointStrategy"));
     return circleMenu;
 }
 
@@ -180,7 +190,7 @@ HMENU ShapesMenu::createEllipseMenu()
     HMENU ellipseMenu = CreateMenu();
     AppendMenu(ellipseMenu, MF_STRING, SHAPES_ELLIPSE_DIRECT, LPCSTR("Direct"));
     AppendMenu(ellipseMenu, MF_STRING, SHAPES_ELLIPSE_POLAR, LPCSTR("Polar"));
-    AppendMenu(ellipseMenu, MF_STRING, SHAPES_ELLIPSE_MIDPOINT, LPCSTR("Midpoint"));
+    AppendMenu(ellipseMenu, MF_STRING, SHAPES_ELLIPSE_MIDPOINT, LPCSTR("LineMidpointStrategy"));
     return ellipseMenu;
 }
 
@@ -188,7 +198,7 @@ HMENU ShapesMenu::createClippingRectMenu()
 {
     HMENU clipRectMenu = CreateMenu();
     AppendMenu(clipRectMenu, MF_STRING, SHAPES_CLIPPING_RECTANGLE_POINT, LPCSTR("Point"));
-    AppendMenu(clipRectMenu, MF_STRING, SHAPES_CLIPPING_RECTANGLE_LINE, LPCSTR("Line"));
+    AppendMenu(clipRectMenu, MF_STRING, SHAPES_CLIPPING_RECTANGLE_LINE, LPCSTR("LineStrategy"));
     AppendMenu(clipRectMenu, MF_STRING, SHAPES_CLIPPING_RECTANGLE_POLYGON, LPCSTR("Polygon"));
     return clipRectMenu;
 }
@@ -197,7 +207,7 @@ HMENU ShapesMenu::createClippingSquareMenu()
 {
     HMENU clipSquareMenu = CreateMenu();
     AppendMenu(clipSquareMenu, MF_STRING, SHAPES_CLIPPING_SQUARE_POINT, LPCSTR("Point"));
-    AppendMenu(clipSquareMenu, MF_STRING, SHAPES_CLIPPING_SQUARE_LINE, LPCSTR("Line"));
+    AppendMenu(clipSquareMenu, MF_STRING, SHAPES_CLIPPING_SQUARE_LINE, LPCSTR("LineStrategy"));
     return clipSquareMenu;
 }
 
@@ -205,6 +215,6 @@ HMENU ShapesMenu::createClippingCircleMenu()
 {
     HMENU clipCircleMenu = CreateMenu();
     AppendMenu(clipCircleMenu, MF_STRING, SHAPES_CLIPPING_CIRCLE_POINT, LPCSTR("Point"));
-    AppendMenu(clipCircleMenu, MF_STRING, SHAPES_CLIPPING_CIRCLE_LINE, LPCSTR("Line"));
+    AppendMenu(clipCircleMenu, MF_STRING, SHAPES_CLIPPING_CIRCLE_LINE, LPCSTR("LineStrategy"));
     return clipCircleMenu;
 }

@@ -1,6 +1,6 @@
-#include "LineDDAArtist.h"
+#include "LineDDAStrategy.h"
 
-void LineDDAArtist::draw(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color)
+void LineDDAStrategy::draw(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color)
 {
     int dx = x2 - x1;
     int dy = y2 - y1;
@@ -15,7 +15,7 @@ void LineDDAArtist::draw(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color
     }
 }
 
-void LineDDAArtist::drawHorizontal(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color, bool invert)
+void LineDDAStrategy::drawHorizontal(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color, bool invert)
 {
     if (x1 > x2)
     {
@@ -48,7 +48,7 @@ void LineDDAArtist::drawHorizontal(HDC hdc, int x1, int y1, int x2, int y2, COLO
     }
 }
 
-void LineDDAArtist::drawVertical(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color)
+void LineDDAStrategy::drawVertical(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color)
 {
     drawHorizontal(hdc, y1, x1, y2, x2, color, true);
 }
