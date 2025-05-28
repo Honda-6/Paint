@@ -3,11 +3,9 @@
 class ColorPicker
 {
 public:
-    ColorPicker();
-
     COLORREF getColor(HWND hwnd);
 
 private:
-    COLORREF defaultColor;
-    COLORREF getCurrentScreenColor(HWND hwnd);
+    COLORREF currentScreenColor = RGB(255, 255, 255);
+    COLORREF getCurrentScreenColor();
 };

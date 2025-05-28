@@ -1,10 +1,5 @@
 #include "ColorPicker.h"
 
-ColorPicker::ColorPicker()
-{
-    defaultColor = defaultColor;
-}
-
 COLORREF ColorPicker::getColor(HWND hwnd)
 {
     COLORREF customColors[16] = {0};
@@ -12,20 +7,17 @@ COLORREF ColorPicker::getColor(HWND hwnd)
     cc.lStructSize = sizeof(CHOOSECOLOR);
     cc.hwndOwner = hwnd;
     cc.lpCustColors = customColors;
-    cc.rgbResult = getCurrentScreenColor(hwnd);
+    cc.rgbResult = getCurrentScreenColor();
     cc.Flags = CC_FULLOPEN | CC_RGBINIT;
 
-    if (ChooseColor(&cc))
-    {
-        return cc.rgbResult;
-    }
+    ChooseColor(&cc);
+
+    currentScreenColor = cc.rgbResult;
 
     return cc.rgbResult;
 }
 
-COLORREF ColorPicker::getCurrentScreenColor(HWND hwnd)
+COLORREF ColorPicker::getCurrentScreenColor()
 {
-    HDC hdc = GetDC(hwnd);
-
-    return GetPixel(hdc, 0, 0);
+    return currentScreenColor;
 }
