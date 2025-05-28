@@ -3,11 +3,13 @@
 #include "NullArtist.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
+#include "CardinalSplineArtist.h"
 
 // TODO: Return NullArtist again and switch through menu
 // static Artist *artist = new NullArtist();
 // static Artist *artist = new BezierRectangleFillArtist();
-static Artist *artist = new HermiteSquareFillArtist();
+// static Artist *artist = new HermiteSquareFillArtist();
+static Artist *artist = new CardinalSplineArtist();
 
 using namespace std;
 

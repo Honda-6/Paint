@@ -2,6 +2,7 @@
 #include "HermiteSquareFillArtist.h"
 #include "Palette.h"
 #include <iostream>
+#include "Utils.h"
 
 void CardinalSplineArtist::drawCardinalSpline(HDC hdc, std::vector<Point> pts, double c ,COLORREF color) {
     unsigned n = pts.size();
@@ -14,7 +15,7 @@ void CardinalSplineArtist::drawCardinalSpline(HDC hdc, std::vector<Point> pts, d
 
     // draw the hermite curve for each segment
     for (int i = 0; i < n-1; ++i) {
-        // HermiteSquareFillArtist::drawHermite(hdc, pts[i].x, pts[i].y, d[i].u, d[i].v, pts[i+1].x, pts[i+1].y, d[i+1].u, d[i+1].v, 1000, color);
+        Utils::drawHermite(hdc, pts[i].x, pts[i].y, d[i].u, d[i].v, pts[i+1].x, pts[i+1].y, d[i+1].u, d[i+1].v, 1000, color);
     }
 }
 
