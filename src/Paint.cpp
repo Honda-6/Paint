@@ -20,6 +20,7 @@ LRESULT WINAPI WndProc(HWND hwnd, UINT m, WPARAM wp, LPARAM lp) {
         break;
     case WM_COMMAND:
         menuManager.handleInput(hwnd, wp);
+        break;
     case WM_LBUTTONDOWN:
         {
             HDC hdc = GetDC(hwnd);
