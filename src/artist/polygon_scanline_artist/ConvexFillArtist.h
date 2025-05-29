@@ -10,11 +10,11 @@ typedef EdgeRec EdgeTable[800];
 class ConvexFillArtist : public Artist {
 
 private:
-    std::vector<Point> points;
+    std::vector<utils::Point> points;
 
 
     void initEdgeTable(EdgeTable& edgeTable);
-    void addEdgeToTable(EdgeTable& edgeTable,const Point& p1,const Point& p2);
+    void addEdgeToTable(EdgeTable& edgeTable,const utils::Point& p1,const utils::Point& p2);
     void constructEdgeTable(EdgeTable& edgeTable);
     void drawLines(HDC hdc, EdgeTable& edgeTable, COLORREF color);
     void convexFill(HDC hdc);

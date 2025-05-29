@@ -20,9 +20,9 @@ void ConvexFillArtist::initEdgeTable(EdgeTable& edgeTable) {
     }
 }
 
-void ConvexFillArtist::addEdgeToTable(EdgeTable &edgeTable,const Point& firstPoint,const Point& secondPoint) {
-    Point p1 = firstPoint;
-    Point p2 = secondPoint;
+void ConvexFillArtist::addEdgeToTable(EdgeTable &edgeTable,const utils::Point& firstPoint,const utils::Point& secondPoint) {
+    utils::Point p1 = firstPoint;
+    utils::Point p2 = secondPoint;
     if (p1.y == p2.y) return;
     if (p1.y > p2.y) {
         std::swap(p1, p2);
@@ -70,7 +70,7 @@ void ConvexFillArtist::convexFill(HDC hdc) {
 
 
 void ConvexFillArtist::onMouseLeftUp(HDC hdc, int x, int y) {
-    points.push_back(Point{x,y});
+    points.push_back(utils::Point{x,y});
 }
 
 void ConvexFillArtist::handleConsole(HDC hdc) {
@@ -81,7 +81,7 @@ void ConvexFillArtist::handleConsole(HDC hdc) {
     for (int i = 0; i < n; i++) {
         int x, y;
         std ::cin >> x >> y;
-        points.push_back(Point{x,y});
+        points.push_back(utils::Point{x,y});
     }
 
     convexFill(hdc);

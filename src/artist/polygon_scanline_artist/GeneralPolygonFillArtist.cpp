@@ -11,9 +11,9 @@ static void drawLine(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color) {
 }
 
 
-void GeneralPolygonFillArtist::addEdgeToTable(Table &edgeTable, const Point &firstPoint, const Point &secondPoint) {
-    Point p1 = firstPoint;
-    Point p2 = secondPoint;
+void GeneralPolygonFillArtist::addEdgeToTable(Table &edgeTable, const utils::Point &firstPoint, const utils::Point &secondPoint) {
+    utils::Point p1 = firstPoint;
+    utils::Point p2 = secondPoint;
     if (p1.y == p2.y) return;
     if (p1.y > p2.y) {
         std::swap(p1, p2);
@@ -82,7 +82,7 @@ void GeneralPolygonFillArtist::scanLineFill(HDC hdc, COLORREF color) {
 
 
 void GeneralPolygonFillArtist::onMouseLeftUp(HDC hdc, int x, int y) {
-    points.push_back(Point{x, y});
+    points.push_back(utils::Point{x, y});
 }
 
 void GeneralPolygonFillArtist::handleConsole(HDC hdc) {
@@ -93,7 +93,7 @@ void GeneralPolygonFillArtist::handleConsole(HDC hdc) {
     for (int i = 0; i < n; i++) {
         int x, y;
         std::cin >> x >> y;
-        points.push_back(Point{x, y});
+        points.push_back(utils::Point{x, y});
     }
 
 

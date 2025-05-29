@@ -1,11 +1,11 @@
 #include "PolygonValidation.h"
 
 
-static int calculateCrossProduct(const Point &p1, const Point &p2, const Point &p3) {
+static int calculateCrossProduct(const utils::Point &p1, const utils::Point &p2, const utils::Point &p3) {
     return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
 }
 
-static bool allPointsCollinear(const std::vector<Point> &points) {
+static bool allPointsCollinear(const std::vector<utils::Point> &points) {
         if (points.size() < 3) return true;
 
         int n = points.size();
@@ -18,14 +18,14 @@ static bool allPointsCollinear(const std::vector<Point> &points) {
         return true; //No area to fill
     }
 
-bool validPolygon(const std::vector<Point> &points) {
+bool validPolygon(const std::vector<utils::Point> &points) {
     if (points.size() < 3 || allPointsCollinear(points)) {
         return false;
     }
     return true;
 }
 
-bool isConvexPolygon(const std::vector<Point> &points) {
+bool isConvexPolygon(const std::vector<utils::Point> &points) {
 
     if (!validPolygon(points))
         return false;
