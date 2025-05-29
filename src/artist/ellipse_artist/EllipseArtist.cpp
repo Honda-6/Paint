@@ -1,9 +1,9 @@
 #include "EllipseArtist.h"
 
 EllipseArtist::EllipseArtist()
-    : centre{0,0}, semiHorizontalLengthSquared{},semiVerticalLengthSquared{},strategy{}{}
+    : centre{-1,-1}, semiHorizontalLengthSquared{},semiVerticalLengthSquared{},strategy{}{}
 EllipseArtist::EllipseArtist(EllipseStrat *strat)
-    : centre{0,0}, semiHorizontalLengthSquared{},semiVerticalLengthSquared{},strategy{strat}{}
+    : centre{-1,-1}, semiHorizontalLengthSquared{},semiVerticalLengthSquared{},strategy{strat}{}
 
 void EllipseArtist::setStrat(EllipseStrat *strat)
 {
@@ -12,22 +12,20 @@ void EllipseArtist::setStrat(EllipseStrat *strat)
 
 void EllipseArtist::onMouseLeftDown(HDC hdc, int x, int y)
 {
-    static int clicks = 0;
     utils::Point vertix = {x,y};
-    clicks++;
 
-    if(clicks == 1)
+    if(this->centre.x < 0)
         this->centre = vertix;
-    else if(clicks == 2)
+    else if(this->semiHorizontalLengthSquared == 0)
         this->semiHorizontalLengthSquared = utils::squareDistance(vertix,this->centre);
     else
     {
         this->semiVerticalLengthSquared = utils::squareDistance(vertix,this->centre);
         //this->drawEllipse(hdc);
         this->strategy->drawEllipse(hdc,this->centre,this->semiHorizontalLengthSquared,this->semiVerticalLengthSquared);
+        this->centre = {-1,-1};
+        this->semiVerticalLengthSquared = this->semiHorizontalLengthSquared = 0;
     }
-    
-    clicks %= 3;
 
 }
 
