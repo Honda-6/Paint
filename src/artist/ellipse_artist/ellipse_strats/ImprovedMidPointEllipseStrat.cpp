@@ -1,12 +1,12 @@
 #include "ImprovedMidPointEllipseStrat.h"
 
-void ImprovedMidPointEllipseStrat::drawEllipse(HDC hdc, Point centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
+void ImprovedMidPointEllipseStrat::drawEllipse(HDC hdc, utils::Point centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
     int y = std::sqrt(semiVerticalLengthSquared),x = 0;
     int TWO_B_SQUARED = 2 * semiVerticalLengthSquared, TWO_A_SQUARED = 2 * semiHorizontalLengthSquared;
 
     int ddaDiffX = 0, ddaDiffY = y * semiHorizontalLengthSquared;
     int decisionVar = - semiHorizontalLengthSquared * y + semiVerticalLengthSquared + semiHorizontalLengthSquared/4;
-    drawFourPixels(hdc,centre,x,y,color);
+    utils::drawFourPixels(hdc,centre,x,y,color);
     while(ddaDiffX <= ddaDiffY)
     {
         if(decisionVar >= 0)
@@ -18,11 +18,11 @@ void ImprovedMidPointEllipseStrat::drawEllipse(HDC hdc, Point centre, unsigned i
         decisionVar += semiVerticalLengthSquared * (2*x + 3);
         x++;
         ddaDiffX += semiVerticalLengthSquared;
-        drawFourPixels(hdc,centre,x,y,color);
+        utils::drawFourPixels(hdc,centre,x,y,color);
     }
 
     x = std::sqrt(semiHorizontalLengthSquared), y = 0;
-    drawFourPixels(hdc,centre,x,y,color);
+    utils::drawFourPixels(hdc,centre,x,y,color);
 
     ddaDiffX = (x+1) * semiVerticalLengthSquared, ddaDiffY = 0;
     decisionVar = - semiVerticalLengthSquared * x + semiHorizontalLengthSquared + semiVerticalLengthSquared/4;
@@ -37,6 +37,6 @@ void ImprovedMidPointEllipseStrat::drawEllipse(HDC hdc, Point centre, unsigned i
         decisionVar += semiHorizontalLengthSquared * (2*y + 3);
         y++;
         ddaDiffY += semiHorizontalLengthSquared;
-        drawFourPixels(hdc,centre,x,y,color);
+        utils::drawFourPixels(hdc,centre,x,y,color);
     }
 }

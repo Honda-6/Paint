@@ -108,9 +108,12 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         *artist = new CardinalSplineArtist();
         break;
     case SHAPES_ELLIPSE_DIRECT:
-        *artist = new DirectEllipseDrawingArtist();
+    {
+        EllipseStrat *strat = new CartesianEllipseStrat();
+        *artist = new EllipseArtist(strat);
         // Handle Direct Ellipse drawing
         break;
+    }
     case SHAPES_ELLIPSE_POLAR:
     {
         EllipseStrat* strat = new PolarEllipseStrat();
@@ -118,9 +121,11 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         //*artist = new OptimizedPolarEllipseDrawingArtist();
         // Handle Polar Ellipse drawing
         break;
+    }
     case SHAPES_ELLIPSE_MIDPOINT:
         // Handle LineMidpointStrategy Ellipse drawing
         break;
+    }
     case SHAPES_CLIPPING_RECTANGLE_POINT:
         // Handle Point Clipping in Rectangle
         break;

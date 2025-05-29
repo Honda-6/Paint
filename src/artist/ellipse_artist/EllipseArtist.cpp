@@ -1,19 +1,30 @@
 #include "EllipseArtist.h"
 
+EllipseArtist::EllipseArtist()
+    : centre{0,0}, semiHorizontalLengthSquared{},semiVerticalLengthSquared{},strategy{}{}
+EllipseArtist::EllipseArtist(EllipseStrat *strat)
+    : centre{0,0}, semiHorizontalLengthSquared{},semiVerticalLengthSquared{},strategy{strat}{}
+
+void EllipseArtist::setStrat(EllipseStrat *strat)
+{
+    this->strategy = strat;
+}
+
 void EllipseArtist::onMouseLeftDown(HDC hdc, int x, int y)
 {
     static int clicks = 0;
-    Point vertix = {x,y};
+    utils::Point vertix = {x,y};
     clicks++;
 
     if(clicks == 1)
         this->centre = vertix;
     else if(clicks == 2)
-        this->semiHorizontalLengthSquared = squareDistance(vertix,this->centre);
+        this->semiHorizontalLengthSquared = utils::squareDistance(vertix,this->centre);
     else
     {
-        this->semiVerticalLengthSquared = squareDistance(vertix,this->centre);
-        this->drawEllipse(hdc);
+        this->semiVerticalLengthSquared = utils::squareDistance(vertix,this->centre);
+        //this->drawEllipse(hdc);
+        this->strategy->drawEllipse(hdc,this->centre,this->semiHorizontalLengthSquared,this->semiVerticalLengthSquared);
     }
     
     clicks %= 3;
@@ -30,5 +41,6 @@ void EllipseArtist::handleConsole(HDC hdc)
     std::cout << "Enter the semi-vertical axis length: ";
     std::cin >> b;
     this->centre = {x,y}, this->semiHorizontalLengthSquared = a*a, this->semiVerticalLengthSquared = b*b;
-    this->drawEllipse(hdc);
+    //this->drawEllipse(hdc);
+    this->strategy->drawEllipse(hdc,this->centre,a*a,b*b);
 }

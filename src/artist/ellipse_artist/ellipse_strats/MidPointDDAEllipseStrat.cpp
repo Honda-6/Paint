@@ -1,6 +1,6 @@
 #include "MidPointDDAEllipseStrat.h"
 
-void MidPointDDAEllipseStrat::drawEllipse(HDC hdc, Point centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
+void MidPointDDAEllipseStrat::drawEllipse(HDC hdc, utils::Point centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
     //starting from y = b and x = 0;
     int y = std::sqrt(semiVerticalLengthSquared),x = 0;
 
@@ -27,7 +27,7 @@ void MidPointDDAEllipseStrat::drawEllipse(HDC hdc, Point centre, unsigned int se
     // applying dda to the change in the decision variable to get rid of multiplications
     // ddaChangeOne is the value added to the decision variable if there is no change in y meanwhile the other is when y is decremented
     int ddaChangeOne = 3 * semiVerticalLengthSquared, ddaChangeTwo = ddaChangeOne + TWO_A_SQUARED * (1 - y);
-    drawFourPixels(hdc,centre,x,y,color);
+    utils::drawFourPixels(hdc,centre,x,y,color);
     while(ddaDiffX <= ddaDiffY)
     {
         if(decisionVar >= 0)
@@ -44,7 +44,7 @@ void MidPointDDAEllipseStrat::drawEllipse(HDC hdc, Point centre, unsigned int se
         ddaChangeTwo += TWO_B_SQUARED, ddaChangeOne += TWO_B_SQUARED;
         x++;
         ddaDiffX += semiVerticalLengthSquared;
-        drawFourPixels(hdc,centre,x,y,color);
+        utils::drawFourPixels(hdc,centre,x,y,color);
     }
 
 
@@ -53,7 +53,7 @@ void MidPointDDAEllipseStrat::drawEllipse(HDC hdc, Point centre, unsigned int se
         and recomputing the decision variable accordingly
     */
     x = std::sqrt(semiHorizontalLengthSquared), y = 0;
-    drawFourPixels(hdc,centre,x,y,color);
+    utils::drawFourPixels(hdc,centre,x,y,color);
 
     ddaDiffX = x * semiVerticalLengthSquared, ddaDiffY = 0;
     decisionVar = - semiVerticalLengthSquared * x + semiHorizontalLengthSquared + semiVerticalLengthSquared/4;
@@ -74,6 +74,6 @@ void MidPointDDAEllipseStrat::drawEllipse(HDC hdc, Point centre, unsigned int se
         ddaChangeOne += TWO_A_SQUARED, ddaChangeTwo += TWO_A_SQUARED;
         y++;
         ddaDiffY += semiHorizontalLengthSquared;
-        drawFourPixels(hdc,centre,x,y,color);
+        utils::drawFourPixels(hdc,centre,x,y,color);
     }
 }
