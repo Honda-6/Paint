@@ -3,12 +3,12 @@
 #include <limits.h>
 #include <cmath>
 #include <algorithm>
+#include "LineMidpointStrategy.h"
 
-
-//Temp function to draw a line till adding draw line functions
-static void drawLine(HDC hdc, int x1, int y1, int x2, int y2) {
-    MoveToEx(hdc, x1, y1, NULL);
-    LineTo(hdc, x2, y2);
+//Color will be added later
+static void drawLine(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color) {
+    LineMidpointStrategy line;
+    line.draw(hdc, x1, y1, x2, y2, RGB(0, 0, 0));
 }
 
 
@@ -74,7 +74,7 @@ void ConvexFillArtist::constructEdgeTable(EdgeTable& edgeTable) {
 void ConvexFillArtist::drawLines(HDC hdc, EdgeTable& edgeTable, COLORREF color) {
     for (int i = 0; i < 800; i++) {
         if (edgeTable[i].xLeft <= edgeTable[i].xRight) {
-            drawLine(hdc,edgeTable[i].xLeft, i, edgeTable[i].xRight, i);
+            drawLine(hdc,edgeTable[i].xLeft, i, edgeTable[i].xRight, i, color);
         }
     }
 }
