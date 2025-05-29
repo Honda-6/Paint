@@ -1,12 +1,13 @@
 #include "Menu.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
+#include "ConvexFillArtist.h"
 #include "CardinalSplineArtist.h"
-#include "artist/polygon_scanline_artist/ConvexFillArtist.h"
 #include "LineArtist.h"
 #include "LineDDAStrategy.h"
 #include "LineMidpointStrategy.h"
 #include "LineParametricStrategy.h"
+#include "GeneralPolygonFillArtist.h"
 
 using namespace std;
 
@@ -84,6 +85,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         break;
     case SHAPES_FILLING_NON_CONVEX:
         // Handle Non-Convex filling
+        *artist  = new GeneralPolygonFillArtist();
         break;
     case SHAPES_FILLING_BEZIER_RECTANGLE:
         // Handle Bezier Rectangle filling
