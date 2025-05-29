@@ -1,8 +1,8 @@
 #include "OptimizedPolarEllipseStrat.h"
 
-void OptimizedPolarEllipseStrat::drawEllipse(HDC hdc, Point centre, unsigned int semiHorizontalLength, unsigned int semiVerticalLength, COLORREF color){
+void OptimizedPolarEllipseStrat::drawEllipse(HDC hdc, Point centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
 
-    int a = semiHorizontalLength, b = semiVerticalLength;
+    int a = std::sqrt(semiHorizontalLengthSquared), b = std::sqrt(semiVerticalLengthSquared);
     double dTheta = 1.0/std::max(a,b);
     double cosineDTheta = std::cos(dTheta), sineDTheta = std::sin(dTheta);
     double aSine = 0, bCosine = b;

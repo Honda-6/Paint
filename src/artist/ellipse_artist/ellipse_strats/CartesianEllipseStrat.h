@@ -1,3 +1,5 @@
+#pragma once
+
 #include "EllipseStrat.h"
 
 class CartesianEllipseStrat: public EllipseStrat

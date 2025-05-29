@@ -1,8 +1,10 @@
+#pragma once
+
 #include "EllipseStrat.h"
 
 class PolarEllipseStrat: public EllipseStrat
 {
 public:
-    void drawEllipse(HDC hdc, Point centre, unsigned int semiHorizontalLength, unsigned int semiVerticalLength, COLORREF color) override;
+    void drawEllipse(HDC hdc, Point centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color) override;
     ~PolarEllipseStrat() = default;
 };
