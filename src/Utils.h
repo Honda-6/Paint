@@ -4,8 +4,21 @@
 #include "Matrix.h"
 #include <cmath>
 
-class Utils {
-public:
+namespace utils {
+    struct Point {
+        int x, y;
+        Point(int x = 0, int y = 0) : x(x) , y(y) {}
+    };
+
+    struct Slope {
+        double u, v;
+        Slope() : u(0), v(0) {}
+        Slope(Point p1, Point p2, double c) {
+            u = c / 2 * (p2.x - p1.x);
+            v = c / 2 * (p2.y - p1.y);
+        }
+    };
+
     static void drawHermite(HDC hdc, int x1, int y1, int u1, int v1, int x2, int y2, int u2, int v2, int numpoints, COLORREF color) {
         Matrix<int, 4, 4> H({
                                     { 2,  1, -2,  1},
