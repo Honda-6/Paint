@@ -1,12 +1,12 @@
 #include "Menu.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
-#include "artist/polygon_scanline_artist/ConvexFillArtist.h"
+#include "ConvexFillArtist.h"
 #include "LineArtist.h"
 #include "LineDDAStrategy.h"
 #include "LineMidpointStrategy.h"
 #include "LineParametricStrategy.h"
-#include "artist/polygon_scanline_artist/GeneralPolygonFillArtist.h"
+#include "GeneralPolygonFillArtist.h"
 
 using namespace std;
 
