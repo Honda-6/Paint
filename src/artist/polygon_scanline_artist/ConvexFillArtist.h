@@ -6,7 +6,6 @@
 struct Point
 {
     int x = 0, y = 0;
-    COLORREF color = RGB(0,0,0);
 };
 
 struct EdgeRec {int xLeft; int xRight;};
