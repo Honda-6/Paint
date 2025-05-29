@@ -108,9 +108,11 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         *artist = new CardinalSplineArtist();
         break;
     case SHAPES_ELLIPSE_DIRECT:
+        *artist = new DirectEllipseDrawingArtist();
         // Handle Direct Ellipse drawing
         break;
     case SHAPES_ELLIPSE_POLAR:
+        *artist = new OptimizedPolarEllipseDrawingArtist();
         // Handle Polar Ellipse drawing
         break;
     case SHAPES_ELLIPSE_MIDPOINT:
