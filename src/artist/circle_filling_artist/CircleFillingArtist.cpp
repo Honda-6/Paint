@@ -2,7 +2,7 @@
 
 /*
     An array of pointer to function returning a point on an octant,
-    they are ordered according to the octants.
+    they are ordered according to the octants i.e each index corresponds to the octant number in the Anti-Clockwise direction.
 */
 static utils::Point (*OCTANTS[])(utils::Point,int,int){
     []  (utils::Point centre,int x,int y) -> utils::Point {return {centre.x + x, centre.y - y};},      //===>>Point on Oct1
@@ -57,7 +57,7 @@ void CircleFillingArtist::handleConsole(HDC hdc) {
     std::cin >> this->radius;
     std::cout << "Enter two octants you wish to fill: ";
     std::cin >> oct1 >> oct2;
-    while(oct1 > 8 || oct2 > 8 || oct1 < 1 || oct2 < 2 || oct1 == oct2)
+    while(oct1 > 8 || oct2 > 8 || oct1 < 1 || oct2 < 1 || oct1 == oct2)
     {
         std::cout << "Please Enter two valid different octants (1-8) : ";
         std::cin >> oct1 >> oct2;
