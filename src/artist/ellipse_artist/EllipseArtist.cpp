@@ -3,7 +3,7 @@
 void EllipseArtist::onMouseLeftDown(HDC hdc, int x, int y)
 {
     static int clicks = 0;
-    Point vertix = {x,y,RGB(0,0,0)};
+    Point vertix = {x,y};
     clicks++;
 
     if(clicks == 1)
@@ -29,6 +29,6 @@ void EllipseArtist::handleConsole(HDC hdc)
     std::cin >> a;
     std::cout << "Enter the semi-vertical axis length: ";
     std::cin >> b;
-    this->centre = {x,y,RGB(0,0,0)}, this->semiHorizontalLengthSquared = a, this->semiVerticalLengthSquared = b;
+    this->centre = {x,y}, this->semiHorizontalLengthSquared = a, this->semiVerticalLengthSquared = b;
     this->drawEllipse(hdc);
 }
