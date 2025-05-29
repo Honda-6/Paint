@@ -1,7 +1,7 @@
 #include "CircleLineFillingArtist.h"
 
 
-void CircleLineFillingArtist::fillCircle(HDC hdc,unsigned int radius, Point (*firstOctant)(Point,int,int),Point (*secondOctant)(Point,int,int), COLORREF color) {
+void CircleLineFillingArtist::fillCircle(HDC hdc,unsigned int radius, utils::Point (*firstOctant)(utils::Point,int,int),utils::Point (*secondOctant)(utils::Point,int,int), COLORREF color) {
     LineStrategy* line = new LineMidpointStrategy();
     int x = radius, y = 0;
     line->draw(hdc,centre.x,centre.y,firstOctant(centre,x,y).x,firstOctant(centre,x,y).y,color);

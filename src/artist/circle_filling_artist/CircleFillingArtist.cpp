@@ -4,15 +4,15 @@
     An array of pointer to function returning a point on an octant,
     they are ordered according to the octants.
 */
-static Point (*OCTANTS[])(Point,int,int){
-    []  (Point centre,int x,int y) -> Point {return {centre.x + x, centre.y - y};},      //===>> Point on Oct1
-    []  (Point centre,int x,int y) -> Point {return {centre.x - y, centre.y + x};},      //===>> Point on Oct2
-    []  (Point centre,int x,int y) -> Point {return {centre.x - y, centre.y - x};},      //===>> Point on Oct3
-    []  (Point centre,int x,int y) -> Point {return {centre.x - x, centre.y - y};},      //===>> Point on Oct4
-    []  (Point centre,int x,int y) -> Point {return {centre.x - x, centre.y + y};},      //===>> Point on Oct5
-    []  (Point centre,int x,int y) -> Point {return {centre.x + y, centre.y - x};},      //===>> Point on Oct6
-    []  (Point centre,int x,int y) -> Point {return {centre.x + y, centre.y + x};},      //===>> Point on Oct7
-    []  (Point centre,int x,int y) -> Point {return {centre.x + x, centre.y + y};}       //===>> Point on Oct8
+static utils::Point (*OCTANTS[])(utils::Point,int,int){
+    []  (utils::Point centre,int x,int y) -> utils::Point {return {centre.x + x, centre.y - y};},      //===>>Point on Oct1
+    []  (utils::Point centre,int x,int y) -> utils::Point {return {centre.x - y, centre.y + x};},      //===>>Point on Oct2
+    []  (utils::Point centre,int x,int y) -> utils::Point {return {centre.x - y, centre.y - x};},      //===>>Point on Oct3
+    []  (utils::Point centre,int x,int y) -> utils::Point {return {centre.x - x, centre.y - y};},      //===>>Point on Oct4
+    []  (utils::Point centre,int x,int y) -> utils::Point {return {centre.x - x, centre.y + y};},      //===>>Point on Oct5
+    []  (utils::Point centre,int x,int y) -> utils::Point {return {centre.x + y, centre.y - x};},      //===>>Point on Oct6
+    []  (utils::Point centre,int x,int y) -> utils::Point {return {centre.x + y, centre.y + x};},      //===>>Point on Oct7
+    []  (utils::Point centre,int x,int y) -> utils::Point {return {centre.x + x, centre.y + y};}       //===>>Point on Oct8
 };
 
 
@@ -21,8 +21,10 @@ void CircleFillingArtist::onMouseLeftDown(HDC hdc, int x, int y) {
 }
 
 void CircleFillingArtist::onMouseLeftUp(HDC hdc, int x, int y) {
+
+    utils::Point edge {x,y};
     int dy = std::abs(y - centre.y), dx = std::abs(x - centre.x);
-    this->radius = std::sqrt((dx * dx) + (dy * dy));
+    this->radius = std::sqrt(utils::distanceSquared(centre,edge));
     unsigned short oct1,oct2;
     if(dy > dx)
     {
