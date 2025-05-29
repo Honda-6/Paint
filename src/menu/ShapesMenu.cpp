@@ -6,7 +6,7 @@
 #include "LineDDAStrategy.h"
 #include "LineMidpointStrategy.h"
 #include "LineParametricStrategy.h"
-#include "polygon_scanline_artist/GeneralPolygonFillArtist.h"
+#include "artist/polygon_scanline_artist/GeneralPolygonFillArtist.h"
 
 using namespace std;
 

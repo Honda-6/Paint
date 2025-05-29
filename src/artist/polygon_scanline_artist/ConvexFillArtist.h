@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "../Artist.h"
+#include "Artist.h"
 #include "PolygonValidation.h"
 
 struct EdgeRec {int xLeft; int xRight;};

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Artist.h"
+#include "Artist.h"
 #include <list>
 #include<vector>
 #include "PolygonValidation.h"
