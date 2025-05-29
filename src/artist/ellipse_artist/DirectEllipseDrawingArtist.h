@@ -1,4 +1,5 @@
 #pragma once
+
 #include "EllipseArtist.h"
 
 class DirectEllipseDrawingArtist: public EllipseArtist

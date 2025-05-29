@@ -2,6 +2,7 @@
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
 #include "ellipse_artist/BresenhamsEllipseDrawingArtist.h"
+#include "ellipse_artist/DirectPolarEllipseDrawingArtist.h"
 #include "ellipse_artist/OptimizedPolarEllipseDrawingArtist.h"
 #include "ellipse_artist/DirectEllipseDrawingArtist.h"
 
@@ -93,6 +94,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         break;
     case SHAPES_ELLIPSE_POLAR:
         *artist = new OptimizedPolarEllipseDrawingArtist();
+        //*artist = new DirectPolarEllipseDrawingArtist();
         // Handle Polar Ellipse drawing
         break;
     case SHAPES_ELLIPSE_MIDPOINT:
