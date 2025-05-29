@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
+#include "CardinalSplineArtist.h"
 #include "artist/polygon_scanline_artist/ConvexFillArtist.h"
 #include "LineArtist.h"
 #include "LineDDAStrategy.h"
@@ -99,8 +100,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Iterative Flood Fill
         break;
     case SHAPES_CARDINAL_SPLINES:
-        *artist = new ConvexFillArtist();
-        // Handle Cardinal Splines
+        *artist = new CardinalSplineArtist();
         break;
     case SHAPES_ELLIPSE_DIRECT:
         // Handle Direct Ellipse drawing
