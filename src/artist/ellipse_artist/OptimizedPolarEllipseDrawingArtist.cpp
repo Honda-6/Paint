@@ -2,7 +2,6 @@
 
 void OptimizedPolarEllipseDrawingArtist::drawEllipse(HDC hdc, COLORREF color)
 {
-    this->centre.color = RGB(35,199,50);
     int a = std::sqrt(this->semiHorizontalLengthSquared), b = std::sqrt(this->semiVerticalLengthSquared);
     double dTheta = 1.0/std::max(a,b);
     double cosineDTheta = std::cos(dTheta), sineDTheta = std::sin(dTheta);

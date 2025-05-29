@@ -79,7 +79,7 @@
         decisionVar += this->semiHorizontalLengthSquared * (2*y + 3);
         y++;
         ddaDiffY += this->semiHorizontalLengthSquared;
-        drawFourPixels(hdc,this->centre,x,y,color,color);
+        drawFourPixels(hdc,this->centre,x,y,color);
     }
 } */
 
