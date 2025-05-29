@@ -10,6 +10,7 @@
 #include "GeneralPolygonFillArtist.h"
 #include "circle_filling_artist/CirclesFillingArtist.h"
 #include "circle_filling_artist/CircleLineFillingArtist.h"
+
 using namespace std;
 
 ShapesMenu::ShapesMenu(Artist **artist)
@@ -88,6 +89,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         break;
     case SHAPES_FILLING_NON_CONVEX:
         // Handle Non-Convex filling
+        *artist  = new GeneralPolygonFillArtist();
         break;
     case SHAPES_FILLING_BEZIER_RECTANGLE:
         // Handle Bezier Rectangle filling

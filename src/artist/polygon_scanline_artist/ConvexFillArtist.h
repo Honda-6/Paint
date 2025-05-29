@@ -1,12 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "../Artist.h"
-
-struct Point
-{
-    int x = 0, y = 0;
-};
+#include "Artist.h"
+#include "PolygonValidation.h"
 
 struct EdgeRec {int xLeft; int xRight;};
 typedef EdgeRec EdgeTable[800];
@@ -14,11 +10,11 @@ typedef EdgeRec EdgeTable[800];
 class ConvexFillArtist : public Artist {
 
 private:
-    std::vector<Point> points;
+    std::vector<utils::Point> points;
 
-    bool isConvexPolygon() const;
+
     void initEdgeTable(EdgeTable& edgeTable);
-    void addEdgeToTable(EdgeTable& edgeTable,const Point& p1,const Point& p2);
+    void addEdgeToTable(EdgeTable& edgeTable,const utils::Point& p1,const utils::Point& p2);
     void constructEdgeTable(EdgeTable& edgeTable);
     void drawLines(HDC hdc, EdgeTable& edgeTable, COLORREF color);
     void convexFill(HDC hdc);
