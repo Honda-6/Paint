@@ -1,6 +1,9 @@
 #include "Menu.h"
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
+#include "ellipse_artist/BresenhamsEllipseDrawingArtist.h"
+#include "ellipse_artist/OptimizedPolarEllipseDrawingArtist.h"
+#include "ellipse_artist/DirectEllipseDrawingArtist.h"
 
 using namespace std;
 
@@ -85,12 +88,15 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Cardinal Splines
         break;
     case SHAPES_ELLIPSE_DIRECT:
+        *artist = new DirectEllipseDrawingArtist();
         // Handle Direct Ellipse drawing
         break;
     case SHAPES_ELLIPSE_POLAR:
+        *artist = new OptimizedPolarEllipseDrawingArtist();
         // Handle Polar Ellipse drawing
         break;
     case SHAPES_ELLIPSE_MIDPOINT:
+        *artist = new BresenhamsEllipseDrawingArtist();
         // Handle Midpoint Ellipse drawing
         break;
     case SHAPES_CLIPPING_RECTANGLE_POINT:
