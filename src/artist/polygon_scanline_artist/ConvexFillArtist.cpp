@@ -56,7 +56,7 @@ void ConvexFillArtist::drawLines(HDC hdc, EdgeTable& edgeTable, COLORREF color) 
 }
 
 void ConvexFillArtist::convexFill(HDC hdc) {
-    if (!PolygonValidation::isConvexPolygon(points)) {
+    if (!isConvexPolygon(points)) {
         std::cout << "The polygon is not convex." << std::endl;
         return;
     }

@@ -18,14 +18,14 @@ static bool allPointsCollinear(const std::vector<Point> &points) {
         return true; //No area to fill
     }
 
-bool PolygonValidation::validPolygon(const std::vector<Point> &points) {
+bool validPolygon(const std::vector<Point> &points) {
     if (points.size() < 3 || allPointsCollinear(points)) {
         return false;
     }
     return true;
 }
 
-bool PolygonValidation::isConvexPolygon(const std::vector<Point> &points) {
+bool isConvexPolygon(const std::vector<Point> &points) {
 
     if (!validPolygon(points))
         return false;

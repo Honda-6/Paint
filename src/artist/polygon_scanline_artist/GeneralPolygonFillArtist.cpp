@@ -69,7 +69,7 @@ void GeneralPolygonFillArtist::fillPolygonFromEdgeTable(HDC hdc, Table &edgeTabl
 
 
 void GeneralPolygonFillArtist::scanLineFill(HDC hdc, COLORREF color) {
-    if (!PolygonValidation::validPolygon(points)) {
+    if (!validPolygon(points)) {
         std::cout << "The polygon is not valid." << std::endl;
         return;
     }

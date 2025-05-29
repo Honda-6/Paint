@@ -7,12 +7,10 @@ struct Point
     int x = 0, y = 0;
 };
 
-class PolygonValidation {
-public:
-    static bool validPolygon(const std::vector<Point>& points);
-    static bool isConvexPolygon(const std::vector<Point>& points);
+bool validPolygon(const std::vector<Point>& points);
+bool isConvexPolygon(const std::vector<Point>& points);
 
-};
+
 
 
 
