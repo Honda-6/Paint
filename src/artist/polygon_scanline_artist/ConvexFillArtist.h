@@ -2,11 +2,7 @@
 
 #include <vector>
 #include "../Artist.h"
-
-struct Point
-{
-    int x = 0, y = 0;
-};
+#include "PolygonValidation.h"
 
 struct EdgeRec {int xLeft; int xRight;};
 typedef EdgeRec EdgeTable[800];
@@ -16,7 +12,7 @@ class ConvexFillArtist : public Artist {
 private:
     std::vector<Point> points;
 
-    bool isConvexPolygon() const;
+
     void initEdgeTable(EdgeTable& edgeTable);
     void addEdgeToTable(EdgeTable& edgeTable,const Point& p1,const Point& p2);
     void constructEdgeTable(EdgeTable& edgeTable);

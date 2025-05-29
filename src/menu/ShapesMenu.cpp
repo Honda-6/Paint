@@ -6,6 +6,7 @@
 #include "LineDDAStrategy.h"
 #include "LineMidpointStrategy.h"
 #include "LineParametricStrategy.h"
+#include "polygon_scanline_artist/GeneralPolygonFillArtist.h"
 
 using namespace std;
 
@@ -83,6 +84,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         break;
     case SHAPES_FILLING_NON_CONVEX:
         // Handle Non-Convex filling
+        *artist  = new GeneralPolygonFillArtist();
         break;
     case SHAPES_FILLING_BEZIER_RECTANGLE:
         // Handle Bezier Rectangle filling

@@ -12,30 +12,6 @@ static void drawLine(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color) {
 }
 
 
-static int calculateCrossProduct(const Point& p1,const Point& p2, const Point& p3) {
-    return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x);
-}
-
-//Function assuming points are in clockwise or counterclockwise order
-bool ConvexFillArtist::isConvexPolygon() const {
-    int n = points.size();
-    if (n < 3) return false;
-
-    int sign = 0;
-    for (int i = 0; i < n; i++) {
-        int z = calculateCrossProduct(points[i], points[(i + 1) % n], points[(i + 2) % n]);
-        // If z is zero >> points in same line
-        if (z != 0) {
-            if (sign == 0) { //Assigning sign for the first turn
-                sign = (z > 0) ? 1 : -1;
-            } else if ((z > 0 && sign < 0) || (z < 0 && sign > 0)) {
-                return false; //not convex
-            }
-        }
-    }
-
-    return true;
-}
 
 void ConvexFillArtist::initEdgeTable(EdgeTable& edgeTable) {
     for (int i = 0; i < 800; i++) {
@@ -80,7 +56,7 @@ void ConvexFillArtist::drawLines(HDC hdc, EdgeTable& edgeTable, COLORREF color) 
 }
 
 void ConvexFillArtist::convexFill(HDC hdc) {
-    if (!isConvexPolygon()) {
+    if (!PolygonValidation::isConvexPolygon(points)) {
         std::cout << "The polygon is not convex." << std::endl;
         return;
     }
@@ -89,6 +65,7 @@ void ConvexFillArtist::convexFill(HDC hdc) {
     initEdgeTable(edgeTable);
     constructEdgeTable(edgeTable);
     drawLines(hdc, edgeTable, RGB(0, 0, 0));
+
 }
 
 
