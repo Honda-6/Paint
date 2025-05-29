@@ -2,53 +2,53 @@
 
 
 
-// void BresenhamsEllipseDrawingArtist::drawEllipse(HDC hdc)       // ->>>> using midpoint directly
-// {
-//     int x = std::sqrt(this->semiHorizontalLengthSquared),y = 0;
+/* void BresenhamsEllipseDrawingArtist::drawEllipse(HDC hdc, COLORREF color)       // ->>>> using decision variable directly
+{
+    int x = std::sqrt(this->semiHorizontalLengthSquared),y = 0;
 
-//     int decisionVar;
-//     int TWO_B_SQUARED = 2 * this->semiVerticalLengthSquared, TWO_A_SQUARED = 2 * this->semiHorizontalLengthSquared;
-//     int ddaDiffX = x * this->semiVerticalLengthSquared, ddaDiffY = 0;
+    int decisionVar;
+    int TWO_B_SQUARED = 2 * this->semiVerticalLengthSquared, TWO_A_SQUARED = 2 * this->semiHorizontalLengthSquared;
+    int ddaDiffX = x * this->semiVerticalLengthSquared, ddaDiffY = 0;
 
-//     drawFourPixels(hdc,this->centre,x,y);
-//     while(ddaDiffX >= ddaDiffY)
-//     {
-//         decisionVar = this->semiVerticalLengthSquared * x * x - this->semiVerticalLengthSquared * x + this->semiVerticalLengthSquared/4 + this->semiHorizontalLengthSquared * y * y + TWO_A_SQUARED * y + this->semiHorizontalLengthSquared - this->semiHorizontalLengthSquared * this->semiVerticalLengthSquared ;
-//         if(decisionVar >= 0)
-//         {
-//             x--;
-//             ddaDiffX -= this->semiVerticalLengthSquared;
-//         }
-//         y++;
-//         ddaDiffY += this->semiHorizontalLengthSquared;
-//         drawFourPixels(hdc,this->centre,x,y);
-//     }
+    drawFourPixels(hdc,this->centre,x,y,color);
+    while(ddaDiffX >= ddaDiffY)
+    {
+        decisionVar = this->semiVerticalLengthSquared * x * x - this->semiVerticalLengthSquared * x + this->semiVerticalLengthSquared/4 + this->semiHorizontalLengthSquared * y * y + TWO_A_SQUARED * y + this->semiHorizontalLengthSquared - this->semiHorizontalLengthSquared * this->semiVerticalLengthSquared ;
+        if(decisionVar >= 0)
+        {
+            x--;
+            ddaDiffX -= this->semiVerticalLengthSquared;
+        }
+        y++;
+        ddaDiffY += this->semiHorizontalLengthSquared;
+        drawFourPixels(hdc,this->centre,x,y,color);
+    }
 
-//     y = std::sqrt(this->semiVerticalLengthSquared), x = 0;
-//     ddaDiffX = 0, ddaDiffY = y * this->semiHorizontalLengthSquared;
+    y = std::sqrt(this->semiVerticalLengthSquared), x = 0;
+    ddaDiffX = 0, ddaDiffY = y * this->semiHorizontalLengthSquared;
 
-//     while(ddaDiffY > ddaDiffX)
-//     {
-//         decisionVar = this->semiVerticalLengthSquared * x * x + TWO_B_SQUARED * x + this->semiHorizontalLengthSquared * y * y - this->semiHorizontalLengthSquared * y + this->semiHorizontalLengthSquared/4 + this->semiVerticalLengthSquared - this->semiHorizontalLengthSquared * this->semiVerticalLengthSquared;
-//         if(decisionVar >= 0)
-//         {
-//             y--;
-//             ddaDiffY -= this->semiHorizontalLengthSquared;
-//         }
-//         x++;
-//         ddaDiffX += this->semiVerticalLengthSquared;
-//         drawFourPixels(hdc,this->centre,x,y);
-//     }
-// }
+    while(ddaDiffY > ddaDiffX)
+    {
+        decisionVar = this->semiVerticalLengthSquared * x * x + TWO_B_SQUARED * x + this->semiHorizontalLengthSquared * y * y - this->semiHorizontalLengthSquared * y + this->semiHorizontalLengthSquared/4 + this->semiVerticalLengthSquared - this->semiHorizontalLengthSquared * this->semiVerticalLengthSquared;
+        if(decisionVar >= 0)
+        {
+            y--;
+            ddaDiffY -= this->semiHorizontalLengthSquared;
+        }
+        x++;
+        ddaDiffX += this->semiVerticalLengthSquared;
+        drawFourPixels(hdc,this->centre,x,y,color);
+    }
+} */
 
-/* void BresenhamsEllipseDrawingArtist::drawEllipse(HDC hdc)       //-->>>>>> applying dda to the decision variable (more optimized)
+/* void BresenhamsEllipseDrawingArtist::drawEllipse(HDC hdc, COLORREF color)       //-->>>>>> applying dda to the decision variable (more optimized)
 {
     int y = std::sqrt(this->semiVerticalLengthSquared),x = 0;
     int TWO_B_SQUARED = 2 * this->semiVerticalLengthSquared, TWO_A_SQUARED = 2 * this->semiHorizontalLengthSquared;
 
     int ddaDiffX = 0, ddaDiffY = y * this->semiHorizontalLengthSquared;
     int decisionVar = - this->semiHorizontalLengthSquared * y + this->semiVerticalLengthSquared + this->semiHorizontalLengthSquared/4;
-    drawFourPixels(hdc,this->centre,x,y);
+    drawFourPixels(hdc,this->centre,x,y,color);
     while(ddaDiffX <= ddaDiffY)
     {
         if(decisionVar >= 0)
@@ -60,11 +60,11 @@
         decisionVar += this->semiVerticalLengthSquared * (2*x + 3);
         x++;
         ddaDiffX += this->semiVerticalLengthSquared;
-        drawFourPixels(hdc,this->centre,x,y);
+        drawFourPixels(hdc,this->centre,x,y,color);
     }
 
     x = std::sqrt(this->semiHorizontalLengthSquared), y = 0;
-    drawFourPixels(hdc,this->centre,x,y);
+    drawFourPixels(hdc,this->centre,x,y,color);
 
     ddaDiffX = (x+1) * this->semiVerticalLengthSquared, ddaDiffY = 0;
     decisionVar = - this->semiVerticalLengthSquared * x + this->semiHorizontalLengthSquared + this->semiVerticalLengthSquared/4;
@@ -79,10 +79,11 @@
         decisionVar += this->semiHorizontalLengthSquared * (2*y + 3);
         y++;
         ddaDiffY += this->semiHorizontalLengthSquared;
-        drawFourPixels(hdc,this->centre,x,y);
+        drawFourPixels(hdc,this->centre,x,y,color,color);
     }
 } */
-void BresenhamsEllipseDrawingArtist::drawEllipse(HDC hdc)   // =====>>>>>>>>> getting rid of multiplication and applying dda to the change of the decision variable
+
+void BresenhamsEllipseDrawingArtist::drawEllipse(HDC hdc, COLORREF color)   // =====>>>>>>>>> getting rid of multiplication and applying dda to the change of the decision variable
 {
     //starting from y = b and x = 0;
     int y = std::sqrt(this->semiVerticalLengthSquared),x = 0;
@@ -110,7 +111,7 @@ void BresenhamsEllipseDrawingArtist::drawEllipse(HDC hdc)   // =====>>>>>>>>> ge
     // applying dda to the change in the decision variable to get rid of multiplications
     // ddaChangeOne is the value added to the decision variable if there is no change in y meanwhile the other is when y is decremented
     int ddaChangeOne = 3 * this->semiVerticalLengthSquared, ddaChangeTwo = ddaChangeOne + TWO_A_SQUARED * (1 - y);
-    drawFourPixels(hdc,this->centre,x,y);
+    drawFourPixels(hdc,this->centre,x,y,color);
     while(ddaDiffX <= ddaDiffY)
     {
         if(decisionVar >= 0)
@@ -127,7 +128,7 @@ void BresenhamsEllipseDrawingArtist::drawEllipse(HDC hdc)   // =====>>>>>>>>> ge
         ddaChangeTwo += TWO_B_SQUARED, ddaChangeOne += TWO_B_SQUARED;
         x++;
         ddaDiffX += this->semiVerticalLengthSquared;
-        drawFourPixels(hdc,this->centre,x,y);
+        drawFourPixels(hdc,this->centre,x,y,color);
     }
 
 
@@ -136,7 +137,7 @@ void BresenhamsEllipseDrawingArtist::drawEllipse(HDC hdc)   // =====>>>>>>>>> ge
         and recomputing the decision variable accordingly
     */
     x = std::sqrt(this->semiHorizontalLengthSquared), y = 0;
-    drawFourPixels(hdc,this->centre,x,y);
+    drawFourPixels(hdc,this->centre,x,y,color);
 
     ddaDiffX = x * this->semiVerticalLengthSquared, ddaDiffY = 0;
     decisionVar = - this->semiVerticalLengthSquared * x + this->semiHorizontalLengthSquared + this->semiVerticalLengthSquared/4;
@@ -157,6 +158,6 @@ void BresenhamsEllipseDrawingArtist::drawEllipse(HDC hdc)   // =====>>>>>>>>> ge
         ddaChangeOne += TWO_A_SQUARED, ddaChangeTwo += TWO_A_SQUARED;
         y++;
         ddaDiffY += this->semiHorizontalLengthSquared;
-        drawFourPixels(hdc,this->centre,x,y);
+        drawFourPixels(hdc,this->centre,x,y,color);
     }
 }
