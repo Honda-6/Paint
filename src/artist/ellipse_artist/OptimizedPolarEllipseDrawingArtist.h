@@ -1,3 +1,5 @@
+#pragma once
+
 #include "EllipseArtist.h"
 
 class OptimizedPolarEllipseDrawingArtist : public EllipseArtist
