@@ -2,6 +2,11 @@
 #include "BezierRectangleFillArtist.h"
 #include "HermiteSquareFillArtist.h"
 #include "CardinalSplineArtist.h"
+#include "artist/polygon_scanline_artist/ConvexFillArtist.h"
+#include "LineArtist.h"
+#include "LineDDAStrategy.h"
+#include "LineMidpointStrategy.h"
+#include "LineParametricStrategy.h"
 
 using namespace std;
 
@@ -33,13 +38,25 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
     switch (wp)
     {
     case SHAPES_LINE_DDA:
-        // Handle DDA line drawing
+        // Handle LineDDAStrategy line drawing
+        {
+            LineStrategy *line = new LineDDAStrategy();
+            *artist = new LineArtist(line);
+        }
         break;
     case SHAPES_LINE_MIDPOINT:
-        // Handle Midpoint line drawing
+        // Handle LineMidpointStrategy line drawing
+        {
+            LineStrategy *line = new LineMidpointStrategy();
+            *artist = new LineArtist(line);
+        }
         break;
     case SHAPES_LINE_PARAMETRIC:
-        // Handle Parametric line drawing
+        // Handle LineParametricStrategy line drawing
+        {
+            LineStrategy *line = new LineMidpointStrategy();
+            *artist = new LineArtist(line);
+        }
         break;
     case SHAPES_CIRCLE_DIRECT:
         // Handle Direct circle drawing
@@ -63,7 +80,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Circle Filling with Circle
         break;
     case SHAPES_FILLING_CONVEX:
-        // Handle Convex filling
+        *artist = new ConvexFillArtist();
         break;
     case SHAPES_FILLING_NON_CONVEX:
         // Handle Non-Convex filling
@@ -92,13 +109,13 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Polar Ellipse drawing
         break;
     case SHAPES_ELLIPSE_MIDPOINT:
-        // Handle Midpoint Ellipse drawing
+        // Handle LineMidpointStrategy Ellipse drawing
         break;
     case SHAPES_CLIPPING_RECTANGLE_POINT:
         // Handle Point Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_RECTANGLE_LINE:
-        // Handle Line Clipping in Rectangle
+        // Handle LineStrategy Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_RECTANGLE_POLYGON:
         // Handle Polygon Clipping in Rectangle
@@ -107,13 +124,13 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Point Clipping in Square
         break;
     case SHAPES_CLIPPING_SQUARE_LINE:
-        // Handle Line Clipping in Square
+        // Handle LineStrategy Clipping in Square
         break;
     case SHAPES_CLIPPING_CIRCLE_POINT:
         // Handle Point Clipping in Circle
         break;
     case SHAPES_CLIPPING_CIRCLE_LINE:
-        // Handle Line Clipping in Circle
+        // Handle LineStrategy Clipping in Circle
         break;
     default:
         matches = false;

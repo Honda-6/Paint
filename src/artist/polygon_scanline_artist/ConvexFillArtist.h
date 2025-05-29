@@ -1,0 +1,31 @@
+#pragma once
+
+#include <vector>
+#include "../Artist.h"
+
+struct Point
+{
+    int x = 0, y = 0;
+    COLORREF color = RGB(0,0,0);
+};
+
+struct EdgeRec {int xLeft; int xRight;};
+typedef EdgeRec EdgeTable[800];
+
+class ConvexFillArtist : public Artist {
+
+private:
+    std::vector<Point> points;
+
+    bool isConvexPolygon() const;
+    void initEdgeTable(EdgeTable& edgeTable);
+    void addEdgeToTable(EdgeTable& edgeTable,const Point& p1,const Point& p2);
+    void constructEdgeTable(EdgeTable& edgeTable);
+    void drawLines(HDC hdc, EdgeTable& edgeTable, COLORREF color);
+    void convexFill(HDC hdc);
+
+public:
+    void onMouseLeftUp(HDC hdc, int x, int y) override;
+    void handleConsole(HDC hdc) override;
+    void onMouseRightDown(HDC hdc, int x, int y) override;
+};
