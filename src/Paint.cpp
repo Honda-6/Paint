@@ -1,14 +1,14 @@
 #include "Core.h"
 #include "Artist.h"
 #include "NullArtist.h"
-#include "BezierRectangleFillArtist.h"
-#include "HermiteSquareFillArtist.h"
 #include "MenuManager.h"
+
 
 // TODO: Return NullArtist again and switch through menu
 static Artist *artist = new NullArtist();
 // static Artist *artist = new BezierRectangleFillArtist();
 // static Artist *artist = new HermiteSquareFillArtist();
+
 static MenuManager menuManager(&artist);
 
 using namespace std;
