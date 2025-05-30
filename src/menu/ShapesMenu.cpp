@@ -8,6 +8,8 @@
 #include "LineMidpointStrategy.h"
 #include "LineParametricStrategy.h"
 #include "GeneralPolygonFillArtist.h"
+#include "circle_filling_artist/CirclesFillingArtist.h"
+#include "circle_filling_artist/CircleLineFillingArtist.h"
 
 using namespace std;
 
@@ -75,9 +77,11 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Modified Midpoint circle drawing
         break;
     case SHAPES_FILLING_CIRCLE_LINES:
+        *artist = new CircleLineFillingArtist();
         // Handle Circle Filling with Lines
         break;
     case SHAPES_FILLING_CIRCLE_CIRCLE:
+        *artist = new CirclesFillingArtist();
         // Handle Circle Filling with Circle
         break;
     case SHAPES_FILLING_CONVEX:
