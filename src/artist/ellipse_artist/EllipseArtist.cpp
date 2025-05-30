@@ -39,6 +39,5 @@ void EllipseArtist::handleConsole(HDC hdc)
     std::cout << "Enter the semi-vertical axis length: ";
     std::cin >> b;
     this->centre = {x,y}, this->semiHorizontalLengthSquared = a*a, this->semiVerticalLengthSquared = b*b;
-    //this->drawEllipse(hdc);
     this->strategy->drawEllipse(hdc,this->centre,a*a,b*b);
 }
