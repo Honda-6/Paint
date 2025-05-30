@@ -39,7 +39,7 @@ namespace utils {
     };
 
     template <typename T>
-    static T distanceSquared(Point<T> a, Point<T> b) {
+    static T distanceSquared(const Point<T>& a, const Point<T>& b) {
         return (b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y);
     }
 
