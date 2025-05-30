@@ -5,7 +5,7 @@
 #include <cmath>
 #include <algorithm>
 #include <iostream>
-#include "ellipse_strats/EllipseStrat.h"
+#include "EllipseStrat.h"
 
 class EllipseArtist: public Artist
 {

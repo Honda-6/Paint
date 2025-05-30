@@ -5,6 +5,6 @@
 class PolarEllipseStrat: public EllipseStrat
 {
 public:
-    void drawEllipse(HDC hdc, utils::Point centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color) override;
+    void drawEllipse(HDC hdc, const utils::Point &centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color) override;
     ~PolarEllipseStrat() = default;
 };

@@ -1,6 +1,6 @@
 #include "MidPointDDAEllipseStrat.h"
 
-void MidPointDDAEllipseStrat::drawEllipse(HDC hdc, utils::Point centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
+void MidPointDDAEllipseStrat::drawEllipse(HDC hdc, const utils::Point &centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
     //starting from y = b and x = 0;
     int y = std::sqrt(semiVerticalLengthSquared),x = 0;
 

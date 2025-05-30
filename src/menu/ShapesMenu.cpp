@@ -12,7 +12,15 @@
 #include "circle_filling_artist/CircleLineFillingArtist.h"
 #include "LineCircleWindowClippingArtist.h"
 #include "PointCircleWindowClippingArtist.h"
-
+#include "LineCircleWindowClippingArtist.h"
+#include "PointCircleWindowClippingArtist.h"
+#include "EllipseArtist.h"
+#include "CartesianEllipseStrat.h"
+#include "PolarEllipseStrat.h"
+#include "OptimizedPolarEllipseStrat.h"
+#include "SimpleMidPointEllipseStrat.h"
+#include "ImprovedMidPointEllipseStrat.h"
+#include "MidPointDDAEllipseStrat.h"
 using namespace std;
 
 ShapesMenu::ShapesMenu(Artist **artist, COLORREF *color) : artist(artist), color(color) { }

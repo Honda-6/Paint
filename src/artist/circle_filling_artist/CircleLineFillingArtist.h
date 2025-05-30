@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CircleFillingArtist.h"
-#include "../../utilities/LineMidpointStrategy.h"
+#include "LineMidpointStrategy.h"
 
 class CircleLineFillingArtist: public CircleFillingArtist {
 private:
