@@ -21,7 +21,7 @@ namespace utils {
             return q;
         }
 
-        Point<T> operator-(const Point<T>& p) {
+        Point<T> operator-(const Point<T>& p) const {
             Point<T> q;
             q.x = x - p.x;
             q.y = y - p.y;
