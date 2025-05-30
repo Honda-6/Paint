@@ -24,7 +24,10 @@ void RecursiveFloodFillArtist::onMouseLeftUp(HDC hdc, int x, int y) {
 }
 
 void RecursiveFloodFillArtist::handleConsole(HDC hdc) {
+    int x, y;
     int r, g, b;
+    std::cout << "Enter a point (x, y) inside a drawn shape: ";
+    std::cin >> x >> y;
     std::cout << "Enter the filling color:\n";
     std::cout << "red intensity -> ";
     std::cin >> r;
@@ -33,4 +36,6 @@ void RecursiveFloodFillArtist::handleConsole(HDC hdc) {
     std::cout << "blue intensity -> ";
     std::cin >> b;
     fill_color = RGB(r,g,b);
+    initialColor = GetPixel(hdc, x, y);
+    floodFill(hdc, x, y, COLOR_CRIMSON_RED);
 }
