@@ -10,6 +10,7 @@
 #include "GeneralPolygonFillArtist.h"
 #include "circle_filling_artist/CirclesFillingArtist.h"
 #include "circle_filling_artist/CircleLineFillingArtist.h"
+#include "RecursiveFloodFillArtist.h"
 
 using namespace std;
 
@@ -27,6 +28,7 @@ HMENU ShapesMenu::createMenu()
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createCircleMenu(), LPCSTR("Circle"));
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createFillingCircleMenu(), LPCSTR("Filling Circle"));
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createFillingMenu(), LPCSTR("Filling"));
+    AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createFloodFillMenu(), LPCSTR("Flood Fill"));
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createEllipseMenu(), LPCSTR("Ellipse"));
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createClippingSquareMenu(), LPCSTR("Clipping Square"));
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createClippingRectMenu(), LPCSTR("Clipping Rectange"));
@@ -100,7 +102,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         *artist = new HermiteSquareFillArtist();
         break;
     case SHAPES_FLOOD_FILL_RECURSIVE:
-        // Handle Recursive Flood Fill
+        *artist = new RecursiveFloodFillArtist();
         break;
     case SHAPES_FLOOD_FILL_ITERATIVE:
         // Handle Iterative Flood Fill
