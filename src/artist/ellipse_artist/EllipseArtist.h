@@ -14,7 +14,6 @@ protected:
     unsigned int semiHorizontalLengthSquared, semiVerticalLengthSquared;
     EllipseStrat *strategy;
     //hard coded color gamut for now till we implement the color attribute in the artist interface
-    //virtual void drawEllipse(HDC hdc, COLORREF color = RGB(200,100,30)) = 0;
     void drawEllipse(HDC hdc, COLORREF color = RGB(200,100,30));
 public:
     EllipseArtist();
