@@ -15,6 +15,16 @@ static utils::Point (*OCTANTS[])(utils::Point,int,int){
     []  (utils::Point centre,int x,int y) -> utils::Point {return {centre.x + x, centre.y + y};}       //===>>Point on Oct8
 };
 
+enum Octant : unsigned short {
+    FIRST_OCTANT,
+    SECOND_OCTANT,
+    THIRD_OCTANT,
+    FOURTH_OCTANT,
+    FIFTH_OCTANT,
+    SIXTH_OCTANT,
+    SEVENTH_OCTANT,
+    EIGHTH_OCTANT
+};
 
 void CircleFillingArtist::onMouseLeftDown(HDC hdc, int x, int y) {
     this->centre = {x,y};
@@ -29,16 +39,16 @@ void CircleFillingArtist::onMouseLeftUp(HDC hdc, int x, int y) {
     if(dy > dx)
     {
         if(y > centre.y)
-            oct1 = (x > centre.x) ? 6 : 5;
+            oct1 = (x > centre.x) ? SEVENTH_OCTANT : SIXTH_OCTANT;
         else
-            oct1 = (x > centre.x) ? 1 : 2;
+            oct1 = (x > centre.x) ? SECOND_OCTANT : THIRD_OCTANT;
     }
     else
     {
         if(x > centre.x)
-            oct1 = (y > centre.y) ? 7 : 0;
+            oct1 = (y > centre.y) ? EIGHTH_OCTANT : FIRST_OCTANT;
         else
-            oct1 = (y > centre.y) ? 4 : 3;
+            oct1 = (y > centre.y) ? FIFTH_OCTANT : FOURTH_OCTANT;
     }
     oct2 = (oct1 + 4) % 8;       //we will fill opposing octants only;
     this->fillCircle(hdc,radius,OCTANTS[oct1],OCTANTS[oct2], COLOR_TEAL);
