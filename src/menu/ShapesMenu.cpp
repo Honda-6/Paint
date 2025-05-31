@@ -10,7 +10,11 @@
 #include "GeneralPolygonFillArtist.h"
 #include "circle_filling_artist/CirclesFillingArtist.h"
 #include "circle_filling_artist/CircleLineFillingArtist.h"
-#include "RecursiveFloodFillArtist.h"
+#include "FloodFillArtist.h"
+#include "FloodFillStrategy.h"
+#include "RecursiveFloodFill.h"
+#include "IterativeFloodFill.h"
+
 
 using namespace std;
 
@@ -39,6 +43,8 @@ HMENU ShapesMenu::createMenu()
 
 bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
 {
+    FloodFillStrategy* floodFillStrat;
+
     bool matches = true;
     switch (wp)
     {
@@ -102,10 +108,12 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         *artist = new HermiteSquareFillArtist();
         break;
     case SHAPES_FLOOD_FILL_RECURSIVE:
-        *artist = new RecursiveFloodFillArtist();
+        floodFillStrat = new RecursiveFloodFill();
+        *artist = new FloodFillArtist(floodFillStrat);
         break;
     case SHAPES_FLOOD_FILL_ITERATIVE:
-        // Handle Iterative Flood Fill
+        floodFillStrat = new IterativeFloodFill();
+        *artist = new FloodFillArtist(floodFillStrat);
         break;
     case SHAPES_CARDINAL_SPLINES:
         *artist = new CardinalSplineArtist();
