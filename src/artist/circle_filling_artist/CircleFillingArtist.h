@@ -9,9 +9,9 @@
 
 class CircleFillingArtist: public Artist {
 protected:
-    utils::Point centre;
+    utils::Point<int> centre;
     unsigned int radius;
-    virtual void fillCircle(HDC hdc, unsigned int radius, utils::Point (*firstOctant)(utils::Point,int,int),utils::Point (*secondOctant)(utils::Point,int,int), COLORREF color = COLOR_TEAL) = 0;
+    virtual void fillCircle(HDC hdc, unsigned int radius, utils::Point<int> (*firstOctant)(const utils::Point<int>&,int,int),utils::Point<int> (*secondOctant)(const utils::Point<int>&,int,int), COLORREF color = COLOR_TEAL) = 0;
 public:
     void onMouseLeftDown(HDC hdc, int x, int y) override;
     void onMouseLeftUp(HDC hdc, int x, int y) override;

@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Utils.h"
 
-void CardinalSplineArtist::drawCardinalSpline(HDC hdc, std::vector<utils::Point> pts, double c ,COLORREF color) {
+void CardinalSplineArtist::drawCardinalSpline(HDC hdc, const std::vector<utils::Point<int>> &pts, double c ,COLORREF color) {
     unsigned n = pts.size();
     // compute the slopes for each segment
     std::vector<utils::Slope> d(n);

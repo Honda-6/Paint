@@ -1,6 +1,6 @@
 #include "CirclesFillingArtist.h"
 
-void CirclesFillingArtist::fillCircle(HDC hdc, unsigned int radius, utils::Point (*firstOctant)(utils::Point,int,int),utils::Point (*secondOctant)(utils::Point,int,int), COLORREF color) {
+void CirclesFillingArtist::fillCircle(HDC hdc, unsigned int radius, utils::Point<int> (*firstOctant)(const utils::Point<int>&,int,int),utils::Point<int> (*secondOctant)(const utils::Point<int>&,int,int), COLORREF color) {
     for(int X {1}; X <= radius; ++X)
     {
         int y = 0, x = X;
