@@ -32,7 +32,7 @@ namespace utils {
     struct Slope {
         double u, v;
         Slope() : u(0), v(0) {}
-        Slope(Point<int> p1, Point<int> p2, double c) {
+        Slope(const Point<int>& p1, const Point<int>& p2, double c) {
             u = c / 2 * (p2.x - p1.x);
             v = c / 2 * (p2.y - p1.y);
         }
