@@ -31,6 +31,6 @@ void SquareWindowClippingArtist::handleConsole(HDC hdc)
         std::cin >> x1 >> y1;
         std::cout << "Enter side length: ";
         std::cin >> sideLength;
-        this->clip(hdc);
+        this->clippingWindow.state = DRAWN;
     }
 }

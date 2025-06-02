@@ -16,7 +16,7 @@ struct QuadrilateralWindow
 {
     utils::Point pointOne, pointTwo;
     State state;
-    void draw(HDC hdc, COLORREF color = RGB(150, 30, 15))
+    void draw(HDC hdc, COLORREF color = RGB(100, 10, 40))
     {
         LineMidpointStrategy lineStrategy;
         lineStrategy.draw(hdc, pointOne.x, pointOne.y, pointTwo.x, pointOne.y, color);

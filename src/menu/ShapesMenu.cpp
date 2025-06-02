@@ -11,6 +11,7 @@
 #include "CirclesFillingArtist.h"
 #include "CircleLineFillingArtist.h"
 #include "SquareWindowLineClippingArtist.h"
+#include "SquareWindowPointClipping.h"
 #include "LineCircleWindowClippingArtist.h"
 #include "PointCircleWindowClippingArtist.h"
 
@@ -127,6 +128,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Polygon Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_SQUARE_POINT:
+        *artist = new SquareWindowPointClipping();
         // Handle Point Clipping in Square
         break;
     case SHAPES_CLIPPING_SQUARE_LINE:

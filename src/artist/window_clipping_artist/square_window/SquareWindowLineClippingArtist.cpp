@@ -8,7 +8,7 @@ void SquareWindowLineClippingArtist::clip(HDC hdc)
     int yTop = std::min(this->clippingWindow.pointOne.y, this->clippingWindow.pointTwo.y);
     int xRight = std::max(this->clippingWindow.pointOne.x, this->clippingWindow.pointTwo.x);
     int yBottom = std::max(this->clippingWindow.pointOne.y, this->clippingWindow.pointTwo.y);   
-    clipLine(hdc,this->line[0],this->line[1],xLeft,xRight,yBottom,yTop);
+    cohenSutherland::clipLine(hdc,this->line[0],this->line[1],xLeft,xRight,yBottom,yTop);
 }
 
 void SquareWindowLineClippingArtist::onMouseLeftDown(HDC hdc, int x, int y)
@@ -40,6 +40,7 @@ void SquareWindowLineClippingArtist::handleConsole(HDC hdc)
         std::cout << "Enter the second point (X,Y): ";
         std::cin >> x2 >> y2;
         this->line[0] = utils::Point(x1,y2), this->line[1] = utils::Point(x2,y2);
+        this->clip(hdc);
     }
 
 }

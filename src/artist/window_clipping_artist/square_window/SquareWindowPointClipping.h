@@ -2,15 +2,13 @@
 
 #include "SquareWindowClippingArtist.h"
 
-
-class SquareWindowLineClippingArtist : public SquareWindowClippingArtist {
+class SquareWindowPointClipping : public SquareWindowClippingArtist {
 private:
-    utils::Line line;
+    utils::Point p;
 protected:
     void clip(HDC hdc) override;
 public:
     void onMouseLeftDown(HDC hdc, int x, int y) override;
-    void onMouseLeftUp(HDC hdc, int x, int y) override;
     void handleConsole(HDC hdc) override;
-    ~SquareWindowLineClippingArtist() = default;
+    ~SquareWindowPointClipping() = default;
 };
