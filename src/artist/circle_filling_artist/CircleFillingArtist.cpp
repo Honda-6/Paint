@@ -45,6 +45,7 @@ void CircleFillingArtist::handleConsole(HDC hdc)
         std::cout << "Please Enter a valid color (0-255) : ";
         std::cin >> r >> g >> b;
     }
+    this->color = RGB(r,g,b);
     std::cin >> y;
     std::cout << "Enter the radius of the circle: ";
     std::cin >> this->radius;
