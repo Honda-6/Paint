@@ -8,8 +8,9 @@
 #include "LineMidpointStrategy.h"
 #include "LineParametricStrategy.h"
 #include "GeneralPolygonFillArtist.h"
-#include "circle_filling_artist/CirclesFillingArtist.h"
-#include "circle_filling_artist/CircleLineFillingArtist.h"
+#include "CirclesFillingArtist.h"
+#include "CircleLineFillingArtist.h"
+#include "SquareWindowLineClippingArtist.h"
 #include "LineCircleWindowClippingArtist.h"
 #include "PointCircleWindowClippingArtist.h"
 
@@ -129,6 +130,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle Point Clipping in Square
         break;
     case SHAPES_CLIPPING_SQUARE_LINE:
+        *artist = new SquareWindowLineClippingArtist();
         // Handle LineStrategy Clipping in Square
         break;
     case SHAPES_CLIPPING_CIRCLE_POINT:
