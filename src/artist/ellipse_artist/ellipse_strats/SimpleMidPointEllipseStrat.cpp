@@ -1,7 +1,7 @@
 #include "SimpleMidPointEllipseStrat.h"
 
 
-void SimpleMidPointEllipseStrat::drawEllipse(HDC hdc, const utils::Point &centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
+void SimpleMidPointEllipseStrat::drawEllipse(HDC hdc, const utils::Point<int> &centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
     int x = std::sqrt(semiHorizontalLengthSquared),y = 0;
 
     int decisionVar;

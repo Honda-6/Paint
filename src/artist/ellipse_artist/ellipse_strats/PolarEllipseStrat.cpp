@@ -1,7 +1,7 @@
 #include "PolarEllipseStrat.h"
 
 
-void PolarEllipseStrat::drawEllipse(HDC hdc, const utils::Point &centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color)
+void PolarEllipseStrat::drawEllipse(HDC hdc, const utils::Point<int> &centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color)
 {
     int a = std::sqrt(semiHorizontalLengthSquared), b = std::sqrt(semiVerticalLengthSquared);
     double dTheta = 1.0/std::max(a,b), theta = 0;

@@ -1,6 +1,6 @@
 #include "CartesianEllipseStrat.h"
 
-void CartesianEllipseStrat::drawEllipse(HDC hdc, const utils::Point &centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color)
+void CartesianEllipseStrat::drawEllipse(HDC hdc, const utils::Point<int> &centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color)
 {
     double x = std::sqrt(semiHorizontalLengthSquared), y = 0;
     

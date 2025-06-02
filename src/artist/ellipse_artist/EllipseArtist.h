@@ -10,16 +10,16 @@
 class EllipseArtist: public Artist
 {
 protected:
-    utils::Point centre;
+    utils::Point<int> centre;
     unsigned int semiHorizontalLengthSquared, semiVerticalLengthSquared;
     EllipseStrat *strategy;
-    //hard coded color gamut for now till we implement the color attribute in the artist interface
-    void drawEllipse(HDC hdc, COLORREF color = RGB(200,100,30));
 public:
     EllipseArtist();
     EllipseArtist(EllipseStrat *strat);
     void setStrat(EllipseStrat *strat);
     void onMouseLeftDown(HDC hdc, int x, int y) override;
+    void onMouseLeftUp(HDC hdc, int x, int y) override;
     void handleConsole(HDC hdc) override;
-    ~EllipseArtist() = default;
+    ~EllipseArtist(){delete strategy; };       /* <<== The only feasible workaround to release the allocated memory by the strategy when initialized in the menu, as deleting it directly before returning 
+                                                       will crash the program as the actual even is handled in main                                                                         */
 };

@@ -1,6 +1,6 @@
 #include "ImprovedMidPointEllipseStrat.h"
 
-void ImprovedMidPointEllipseStrat::drawEllipse(HDC hdc, const utils::Point &centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
+void ImprovedMidPointEllipseStrat::drawEllipse(HDC hdc, const utils::Point<int> &centre, unsigned int semiHorizontalLengthSquared, unsigned int semiVerticalLengthSquared, COLORREF color){
     int y = std::sqrt(semiVerticalLengthSquared),x = 0;
     int TWO_B_SQUARED = 2 * semiVerticalLengthSquared, TWO_A_SQUARED = 2 * semiHorizontalLengthSquared;
 

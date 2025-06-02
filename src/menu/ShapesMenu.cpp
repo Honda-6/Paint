@@ -8,8 +8,8 @@
 #include "LineMidpointStrategy.h"
 #include "LineParametricStrategy.h"
 #include "GeneralPolygonFillArtist.h"
-#include "circle_filling_artist/CirclesFillingArtist.h"
-#include "circle_filling_artist/CircleLineFillingArtist.h"
+#include "CirclesFillingArtist.h"
+#include "CircleLineFillingArtist.h"
 #include "LineCircleWindowClippingArtist.h"
 #include "PointCircleWindowClippingArtist.h"
 #include "LineCircleWindowClippingArtist.h"
@@ -45,6 +45,7 @@ HMENU ShapesMenu::createMenu()
 bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
 {
     bool matches = true;
+    EllipseStrat* ellipseStrat;
     switch (wp)
     {
     case SHAPES_LINE_DDA:
@@ -117,20 +118,22 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         break;
     case SHAPES_ELLIPSE_DIRECT:
     {
-        EllipseStrat *strat = new CartesianEllipseStrat();
-        *artist = new EllipseArtist(strat);
+        ellipseStrat = new CartesianEllipseStrat();
+        *artist = new EllipseArtist(ellipseStrat);
         // Handle Direct Ellipse drawing
         break;
     }
     case SHAPES_ELLIPSE_POLAR:
     {
-        EllipseStrat* strat = new PolarEllipseStrat();
-        *artist = new NewEllipseArtist(strat);
-        //*artist = new OptimizedPolarEllipseDrawingArtist();
+        ellipseStrat = new OptimizedPolarEllipseStrat();
+        *artist = new EllipseArtist(ellipseStrat);
         // Handle Polar Ellipse drawing
         break;
     }
     case SHAPES_ELLIPSE_MIDPOINT:
+    {
+        ellipseStrat = new MidPointDDAEllipseStrat();
+        *artist = new EllipseArtist(ellipseStrat);
         // Handle LineMidpointStrategy Ellipse drawing
         break;
     }
@@ -159,7 +162,6 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         matches = false;
         break;
     }
-
     (*artist)->setColor(*color);
 
     return matches;
