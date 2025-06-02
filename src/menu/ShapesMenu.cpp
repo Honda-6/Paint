@@ -19,10 +19,7 @@
 
 using namespace std;
 
-ShapesMenu::ShapesMenu(Artist **artist)
-{
-    this->artist = artist;
-}
+ShapesMenu::ShapesMenu(Artist **artist, COLORREF *color) : artist(artist), color(color) { }
 
 HMENU ShapesMenu::createMenu()
 {
@@ -153,6 +150,9 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         matches = false;
         break;
     }
+
+    (*artist)->setColor(*color);
+
     return matches;
 }
 

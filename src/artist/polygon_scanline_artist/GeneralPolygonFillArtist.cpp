@@ -7,7 +7,7 @@
 //Color will be added later
 static void drawLine(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color) {
     LineMidpointStrategy line;
-    line.draw(hdc, x1, y1, x2, y2, RGB(0, 0, 0));
+    line.draw(hdc, x1, y1, x2, y2, color);
 }
 
 
@@ -102,6 +102,6 @@ void GeneralPolygonFillArtist::handleConsole(HDC hdc) {
 
 
 void GeneralPolygonFillArtist::onMouseRightDown(HDC hdc, int x, int y) {
-    scanLineFill(hdc, RGB(0, 0, 0));
+    scanLineFill(hdc, color);
     points.clear();
 }

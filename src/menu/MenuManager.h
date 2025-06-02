@@ -8,11 +8,11 @@ using namespace std;
 class MenuManager
 {
 public:
-    MenuManager(Artist **artist)
+    MenuManager(Artist **artist, COLORREF *color)
     {
         menus.insert({LPCSTR("File"), new FileMenu()});
-        menus.insert({LPCSTR("Shapes"), new ShapesMenu(artist)});
-        menus.insert({LPCSTR("Color"), new ColorMenu()});
+        menus.insert({LPCSTR("Shapes"), new ShapesMenu(artist, color)});
+        menus.insert({LPCSTR("Color"), new ColorMenu(artist, color)});
         menus.insert({LPCSTR("Cursor"), new CursorMenu()});
     }
 

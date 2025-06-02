@@ -3,13 +3,10 @@
 #include "NullArtist.h"
 #include "MenuManager.h"
 
-
-// TODO: Return NullArtist again and switch through menu
+static COLORREF color = RGB(0, 0, 0);
 static Artist *artist = new NullArtist();
-// static Artist *artist = new BezierRectangleFillArtist();
-// static Artist *artist = new HermiteSquareFillArtist();
 
-static MenuManager menuManager(&artist);
+static MenuManager menuManager(&artist, &color);
 
 using namespace std;
 

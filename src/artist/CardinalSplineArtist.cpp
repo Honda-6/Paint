@@ -1,5 +1,4 @@
 #include "CardinalSplineArtist.h"
-#include "Palette.h"
 #include <iostream>
 #include "Utils.h"
 
@@ -23,7 +22,7 @@ void CardinalSplineArtist::onMouseLeftUp(HDC hdc, int x, int y) {
 }
 
 void CardinalSplineArtist::onMouseRightDown(HDC hdc, int x, int y) {
-    drawCardinalSpline(hdc, control_points, c, COLOR_CRIMSON_RED);
+    drawCardinalSpline(hdc, control_points, c, color);
     control_points.clear();
 }
 

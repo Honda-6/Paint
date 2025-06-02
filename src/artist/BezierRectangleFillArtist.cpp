@@ -1,6 +1,5 @@
 #include "BezierRectangleFillArtist.h"
 #include "Matrix.h"
-#include "Palette.h"
 #include <iostream>
 
 void BezierRectangleFillArtist::fillRectangle(HDC hdc) {
@@ -10,7 +9,7 @@ void BezierRectangleFillArtist::fillRectangle(HDC hdc) {
     }
 
     for (int y = y1; y <= y2; y++) {
-        drawBezier(hdc, x1, y, x1, y, x2, y, x2, y, 1000, COLOR_ELECTRIC_INDIGO);
+        drawBezier(hdc, x1, y, x1, y, x2, y, x2, y, 1000, color);
     }
 }
 

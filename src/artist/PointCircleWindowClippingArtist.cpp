@@ -27,7 +27,7 @@ void PointCircleWindowClippingArtist::onMouseLeftUp(HDC hdc, int x, int y) {
         state = POINT_CIRCLE_WINDOW_CLIPPING_STATE_POINT_CLIPPING;
     } else {
         if (clipPoint(p)) {
-            SetPixel(hdc, round(p.x), round(p.y), COLOR_BLACK);
+            SetPixel(hdc, round(p.x), round(p.y), color);
         } else {
             SetPixel(hdc, round(p.x), round(p.y), COLOR_LIGHT_GRAY);
         }
@@ -57,7 +57,7 @@ void PointCircleWindowClippingArtist::handleConsole(HDC hdc) {
         cin >> p.y;
 
         if (clipPoint(p)) {
-            SetPixel(hdc, round(p.x), round(p.y), COLOR_BLACK);
+            SetPixel(hdc, round(p.x), round(p.y), color);
         } else {
             SetPixel(hdc, round(p.x), round(p.y), COLOR_LIGHT_GRAY);
         }
