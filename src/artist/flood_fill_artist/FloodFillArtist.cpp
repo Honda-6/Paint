@@ -10,7 +10,7 @@ void FloodFillArtist::setStrategy(FloodFillStrategy *strat) {
 
 void FloodFillArtist::onMouseLeftUp(HDC hdc, int x, int y) {
     initialColor = GetPixel(hdc, x, y);
-    strategy->floodFill(hdc, x, y, COLOR_CRIMSON_RED, initialColor);
+    strategy->floodFill(hdc, x, y, color, initialColor);
 }
 
 void FloodFillArtist::handleConsole(HDC hdc) {
@@ -25,7 +25,10 @@ void FloodFillArtist::handleConsole(HDC hdc) {
     std::cin >> g;
     std::cout << "blue intensity -> ";
     std::cin >> b;
-    fill_color = RGB(r,g,b);
     initialColor = GetPixel(hdc, x, y);
-    strategy->floodFill(hdc, x, y, COLOR_CRIMSON_RED, initialColor);
+    strategy->floodFill(hdc, x, y, color, initialColor);
+}
+
+FloodFillArtist::~FloodFillArtist() {
+    delete strategy;
 }
