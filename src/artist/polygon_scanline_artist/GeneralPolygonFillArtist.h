@@ -21,8 +21,8 @@ typedef  LList Table[800];
 
 class GeneralPolygonFillArtist : public Artist {
 private:
-    std::vector<utils::Point> points;
-    void addEdgeToTable(Table& edgeTable,const utils::Point& p1,const utils::Point& p2);
+    std::vector<utils::Point<int>> points;
+    void addEdgeToTable(Table& edgeTable,const utils::Point<int>& p1,const utils::Point<int>& p2);
     void fillPolygonFromEdgeTable(HDC hdc, Table& edgeTable, COLORREF color);
     void scanLineFill(HDC hdc, COLORREF color);
 
