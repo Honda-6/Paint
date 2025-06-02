@@ -16,7 +16,7 @@ namespace cohenSutherland
         unsigned char code : 4;
     } regionCode;
 
-    void initializeRegionCode(const utils::Point &p, const int &xLeft, const int &xRight, const int &yBottom, const int &yUp, regionCode &code);
-    void clipLine(HDC hdc, const utils::Point &p1, const utils::Point &p2, const int &xLeft, const int &xRight, const int &yBottom, const int &yTop);
-    void clipPoint(HDC hdc, const utils::Point &p, const int &xLeft, const int &xRight, const int &yBottom, const int &yTop);
+    void initializeRegionCode(const utils::Point<int> &p, const int &xLeft, const int &xRight, const int &yBottom, const int &yUp, regionCode &code);
+    void clipLine(HDC hdc, const utils::Point<int> &p1, const utils::Point<int> &p2, const int &xLeft, const int &xRight, const int &yBottom, const int &yTop);
+    void clipPoint(HDC hdc, const utils::Point<int> &p, const int &xLeft, const int &xRight, const int &yBottom, const int &yTop);
 }

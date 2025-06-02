@@ -3,7 +3,7 @@
 namespace cohenSutherland
 {
 
-    void initializeRegionCode(const utils::Point &p, const int &xLeft, const int &xRight, const int &yBottom, const int &yTop, regionCode &code)
+    void initializeRegionCode(const utils::Point<int> &p, const int &xLeft, const int &xRight, const int &yBottom, const int &yTop, regionCode &code)
     {
         code.code = 0; // Reset the codes
         if (p.x < xLeft)
@@ -16,14 +16,14 @@ namespace cohenSutherland
             code.bottom = 1;
     }
 
-    void clipLine(HDC hdc, const utils::Point &p1, const utils::Point &p2, const int &xLeft, const int &xRight, const int &yBottom, const int &yTop)
+    void clipLine(HDC hdc, const utils::Point<int> &p1, const utils::Point<int> &p2, const int &xLeft, const int &xRight, const int &yBottom, const int &yTop)
     {
         regionCode p1Code{}, p2Code{};
         initializeRegionCode(p1, xLeft, xRight, yBottom, yTop, p1Code);
         initializeRegionCode(p2, xLeft, xRight, yBottom, yTop, p2Code);
 
         bool accept = false;
-        utils::Line clippedLine = {p1, p2};
+        utils::Line<int> clippedLine = {p1, p2};
         while (true)
         {
             if (p1Code.code & p2Code.code)
@@ -35,7 +35,7 @@ namespace cohenSutherland
             }
             // At least one point is outside the clipping window
             regionCode outCode = (p1Code.code) ? p1Code : p2Code;
-            utils::Point intersection;
+            utils::Point<int> intersection;
 
             if (outCode.left)
                 intersection = utils::verticalIntersection(p1, p2, xLeft);
@@ -68,11 +68,11 @@ namespace cohenSutherland
             lineStrategy.draw(hdc, p1.x, p1.y, p2.x, p2.y, RGB(255, 0, 0));
     }
 
-    void clipPoint(HDC hdc, const utils::Point &p, const int &xLeft, const int &xRight, const int &yBottom, const int &yTop)
+    void clipPoint(HDC hdc, const utils::Point<int> &p, const int &xLeft, const int &xRight, const int &yBottom, const int &yTop)
     {
-        if (p.x >= xLeft && p.x <= xRight && p.y >= yTop, p.y <= yBottom)
+        if (p.x >= xLeft && p.x <= xRight && p.y >= yTop && p.y <= yBottom)
             SetPixel(hdc, p.x, p.y, RGB(0, 255, 0));
         else
-            SetPixel(hdc, p.x, p.y, RGB(150, 150, 150));
+            SetPixel(hdc, p.x, p.y, RGB(255, 0, 0));
     }
 }

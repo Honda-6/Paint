@@ -4,7 +4,7 @@
 void SquareWindowClippingArtist::onMouseLeftDown(HDC hdc, int x, int y)
 {
     if (this->clippingWindow.state == NOT_DRAWN)
-        this->clippingWindow.pointOne = utils::Point(x, y);
+        this->clippingWindow.pointOne = utils::Point<int>(x, y);
 
 }
 void SquareWindowClippingArtist::onMouseLeftUp(HDC hdc, int x, int y)
@@ -14,9 +14,9 @@ void SquareWindowClippingArtist::onMouseLeftUp(HDC hdc, int x, int y)
         int dx = x - this->clippingWindow.pointOne.x;
         int dy = y - this->clippingWindow.pointOne.y;
         if(std::abs(dx) > std::abs(dy))
-            this->clippingWindow.pointTwo = utils::Point(this->clippingWindow.pointOne.x + dx, this->clippingWindow.pointOne.y + std::abs(dx) * ((dy < 0) ? -1 : 1));
+            this->clippingWindow.pointTwo = utils::Point<int>(this->clippingWindow.pointOne.x + dx, this->clippingWindow.pointOne.y + std::abs(dx) * ((dy < 0) ? -1 : 1));
         else
-            this->clippingWindow.pointTwo = utils::Point(this->clippingWindow.pointOne.x + std::abs(dy) * ((dx < 0) ? -1 : 1), this->clippingWindow.pointOne.y + dy);
+            this->clippingWindow.pointTwo = utils::Point<int>(this->clippingWindow.pointOne.x + std::abs(dy) * ((dx < 0) ? -1 : 1), this->clippingWindow.pointOne.y + dy);
 
         this->clippingWindow.draw(hdc);
         this->clippingWindow.state = DRAWN;

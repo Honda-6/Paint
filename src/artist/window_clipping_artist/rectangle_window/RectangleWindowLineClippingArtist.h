@@ -1,9 +1,9 @@
 #pragma once
 
-#include "SquareWindowClippingArtist.h"
+#include "RectangleWindowClippingArtist.h"
 
 
-class SquareWindowLineClippingArtist : public SquareWindowClippingArtist {
+class RectangleWindowLineClippingArtist : public RectangleWindowClippingArtist {
 private:
     utils::Line<int> line;
 protected:
@@ -12,5 +12,5 @@ public:
     void onMouseLeftDown(HDC hdc, int x, int y) override;
     void onMouseLeftUp(HDC hdc, int x, int y) override;
     void handleConsole(HDC hdc) override;
-    ~SquareWindowLineClippingArtist() = default;
+    ~RectangleWindowLineClippingArtist() = default;
 };

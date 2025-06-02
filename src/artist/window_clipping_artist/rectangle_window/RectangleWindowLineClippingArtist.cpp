@@ -1,8 +1,8 @@
-#include "SquareWindowLineClippingArtist.h"
+#include "RectangleWindowLineClippingArtist.h"
 
 
 
-void SquareWindowLineClippingArtist::clip(HDC hdc)
+void RectangleWindowLineClippingArtist::clip(HDC hdc)
 {
     int xLeft = std::min(this->clippingWindow.pointOne.x, this->clippingWindow.pointTwo.x);
     int yTop = std::min(this->clippingWindow.pointOne.y, this->clippingWindow.pointTwo.y);
@@ -11,27 +11,27 @@ void SquareWindowLineClippingArtist::clip(HDC hdc)
     cohenSutherland::clipLine(hdc,this->line[0],this->line[1],xLeft,xRight,yBottom,yTop);
 }
 
-void SquareWindowLineClippingArtist::onMouseLeftDown(HDC hdc, int x, int y)
+void RectangleWindowLineClippingArtist::onMouseLeftDown(HDC hdc, int x, int y)
 {
     if (this->clippingWindow.state == NOT_DRAWN)
-        SquareWindowClippingArtist::onMouseLeftDown(hdc,x,y);
+        RectangleWindowClippingArtist::onMouseLeftDown(hdc,x,y);
     else
         this->line[0] = utils::Point<int>(x,y);
 }
-void SquareWindowLineClippingArtist::onMouseLeftUp(HDC hdc, int x, int y)
+void RectangleWindowLineClippingArtist::onMouseLeftUp(HDC hdc, int x, int y)
 {
     if (this->clippingWindow.state == NOT_DRAWN)
-        SquareWindowClippingArtist::onMouseLeftUp(hdc,x,y);
+        RectangleWindowClippingArtist::onMouseLeftUp(hdc,x,y);
     else
     {
         this->line[1] = utils::Point<int>(x,y);
         this->clip(hdc);
     }
 }
-void SquareWindowLineClippingArtist::handleConsole(HDC hdc)
+void RectangleWindowLineClippingArtist::handleConsole(HDC hdc)
 {
     if (this->clippingWindow.state == NOT_DRAWN)
-        SquareWindowClippingArtist::handleConsole(hdc);
+        RectangleWindowClippingArtist::handleConsole(hdc);
     else
     {
         int x1,x2,y1,y2;

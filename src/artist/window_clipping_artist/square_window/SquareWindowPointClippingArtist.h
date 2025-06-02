@@ -4,7 +4,7 @@
 
 class SquareWindowPointClipping : public SquareWindowClippingArtist {
 private:
-    utils::Point p;
+    utils::Point<int> p;
 protected:
     void clip(HDC hdc) override;
 public:

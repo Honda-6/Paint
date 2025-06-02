@@ -1,4 +1,4 @@
-#include "SquareWindowPointClipping.h"
+#include "SquareWindowPointClippingArtist.h"
 
 
 void SquareWindowPointClipping::clip(HDC hdc) {
@@ -14,7 +14,7 @@ void SquareWindowPointClipping::onMouseLeftDown(HDC hdc, int x, int y) {
         SquareWindowClippingArtist::onMouseLeftDown(hdc, x, y);
     else
     {
-        this->p = utils::Point(x, y);
+        this->p = utils::Point<int>(x, y);
         this->clip(hdc);
     }
 }
@@ -27,7 +27,7 @@ void SquareWindowPointClipping::handleConsole(HDC hdc) {
         int x, y;
         std::cout << "Enter the point (X,Y): ";
         std::cin >> x >> y;
-        this->p = utils::Point(x, y);
+        this->p = utils::Point<int>(x, y);
         this->clip(hdc);
     }
     

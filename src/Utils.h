@@ -38,7 +38,8 @@ namespace utils {
             v = c / 2 * (p2.y - p1.y);
         }
     };
-    typedef Point<int> Line[2];
+    template <typename T>
+    using Line = Point<T>[2];
 
     template <typename T>
     static T distanceSquared(const Point<T>& a, const Point<T>& b) {

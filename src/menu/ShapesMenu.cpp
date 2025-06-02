@@ -11,7 +11,9 @@
 #include "CirclesFillingArtist.h"
 #include "CircleLineFillingArtist.h"
 #include "SquareWindowLineClippingArtist.h"
-#include "SquareWindowPointClipping.h"
+#include "SquareWindowPointClippingArtist.h"
+#include "RectangleWindowLineClippingArtist.h"
+#include "RectangleWindowPointClippingArtist.h"
 #include "LineCircleWindowClippingArtist.h"
 #include "PointCircleWindowClippingArtist.h"
 
@@ -119,9 +121,11 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle LineMidpointStrategy Ellipse drawing
         break;
     case SHAPES_CLIPPING_RECTANGLE_POINT:
+        *artist = new RectangleWindowPointClippingArtist();
         // Handle Point Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_RECTANGLE_LINE:
+        *artist = new RectangleWindowLineClippingArtist();
         // Handle LineStrategy Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_RECTANGLE_POLYGON:
