@@ -1,6 +1,6 @@
 #include "LineParametricStrategy.h"
 
-void draw(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color)
+void LineParametricStrategy::draw(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color)
 {
     double a1 = x2 - x1;
     double b1 = x1;
