@@ -1,5 +1,4 @@
 #include "HermiteSquareFillArtist.h"
-#include "Palette.h"
 #include <cmath>
 #include <iostream>
 #include "Utils.h"
@@ -11,7 +10,7 @@ void HermiteSquareFillArtist::fillSquare(HDC hdc) {
     }
 
     for (int x = x1; x <= x2; x++) {
-        utils::drawHermite(hdc, x, y1, 0, 0, x, y2, 0, 0, 1000, COLOR_EMERALD_GREEN);
+        utils::drawHermite(hdc, x, y1, 0, 0, x, y2, 0, 0, 1000, color);
     }
 }
 

@@ -1,5 +1,4 @@
 #include "LineArtist.h"
-#include "Palette.h"
 
 LineArtist::LineArtist(LineStrategy *line)
 {
@@ -17,7 +16,7 @@ void LineArtist::onMouseLeftUp(HDC hdc, int x, int y)
     x2 = x;
     y2 = y;
 
-    line->draw(hdc, x1, y1, x2, y2, COLOR_TEAL);
+    line->draw(hdc, x1, y1, x2, y2, color);
 }
 
 void LineArtist::handleConsole(HDC hdc)
@@ -34,5 +33,5 @@ void LineArtist::handleConsole(HDC hdc)
     std::cout << "Enter second point's y: ";
     std::cin >> y2;
 
-    line->draw(hdc, x1, y1, x2, y2, COLOR_TEAL);
+    line->draw(hdc, x1, y1, x2, y2, color);
 }

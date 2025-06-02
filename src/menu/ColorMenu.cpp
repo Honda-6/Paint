@@ -1,5 +1,7 @@
 #include "Menu.h"
 
+ColorMenu::ColorMenu(Artist **artist, COLORREF *color) : artist(artist), color(color) { }
+
 HMENU ColorMenu::createMenu()
 {
     HMENU colorMenu = CreateMenu();
@@ -19,7 +21,8 @@ bool ColorMenu::handleEvent(HWND hwnd, WPARAM wp)
         changeBackgroundColor(hwnd, colorPicker.getColor(hwnd));
         break;
     case COLOR_MENU_SHAPE:
-        colorPicker.getColor(hwnd);
+        *color = colorPicker.getColor(hwnd);
+        (*artist)->setColor(*color);
         break;
     default:
         matches = false;

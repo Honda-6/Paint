@@ -5,10 +5,9 @@
 #include <algorithm>
 #include "LineMidpointStrategy.h"
 
-//Color will be added later
 static void drawLine(HDC hdc, int x1, int y1, int x2, int y2, COLORREF color) {
     LineMidpointStrategy line;
-    line.draw(hdc, x1, y1, x2, y2, RGB(0, 0, 0));
+    line.draw(hdc, x1, y1, x2, y2, color);
 }
 
 
@@ -64,7 +63,7 @@ void ConvexFillArtist::convexFill(HDC hdc) {
     EdgeTable edgeTable;
     initEdgeTable(edgeTable);
     constructEdgeTable(edgeTable);
-    drawLines(hdc, edgeTable, RGB(0, 0, 0));
+    drawLines(hdc, edgeTable, color);
 
 }
 

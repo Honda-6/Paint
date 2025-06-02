@@ -87,11 +87,12 @@ public:
 class ShapesMenu : public Menu
 {
 public:
-    ShapesMenu(Artist **artist);
+    ShapesMenu(Artist **artist, COLORREF *color);
     bool handleEvent(HWND hwnd, WPARAM wp) override;
     HMENU createMenu() override;
 
 private:
+    COLORREF *color;
     Artist **artist;
 
     HMENU createLineMenu();
@@ -118,10 +119,13 @@ private:
 class ColorMenu : public Menu
 {
 public:
+    ColorMenu(Artist **artist, COLORREF *color);
     bool handleEvent(HWND hwnd, WPARAM wp) override;
     HMENU createMenu() override;
 
 private:
+    COLORREF *color;
+    Artist **artist;
     ColorPicker colorPicker;
 
     void changeBackgroundColor(HWND hwnd, COLORREF color);

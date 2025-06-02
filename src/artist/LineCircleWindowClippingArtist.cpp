@@ -42,7 +42,7 @@ void LineCircleWindowClippingArtist::onMouseLeftUp(HDC hdc, int x, int y) {
         line->draw(hdc, round(p1.x), round(p1.y), round(p2.x), round(p2.y), COLOR_LIGHT_GRAY);
         
         if (clipLine()) {
-            line->draw(hdc, round(p1.x), round(p1.y), round(p2.x), round(p2.y), COLOR_BLACK);
+            line->draw(hdc, round(p1.x), round(p1.y), round(p2.x), round(p2.y), color);
         }
     }
 }
@@ -76,7 +76,7 @@ void LineCircleWindowClippingArtist::handleConsole(HDC hdc) {
         line->draw(hdc, round(p1.x), round(p1.y), round(p2.x), round(p2.y), COLOR_LIGHT_GRAY);
         
         if (clipLine()) {
-            line->draw(hdc, round(p1.x), round(p1.y), round(p2.x), round(p2.y), COLOR_BLACK);
+            line->draw(hdc, round(p1.x), round(p1.y), round(p2.x), round(p2.y), color);
         }
 
         char answer;
