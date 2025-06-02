@@ -21,7 +21,7 @@ void EllipseArtist::onMouseLeftUp(HDC hdc, int x, int y)
     int dx = x - this->centre.x, dy = y - this->centre.y;
     this->semiHorizontalLengthSquared = dx * dx;
     this->semiVerticalLengthSquared = dy * dy;
-    this->strategy->drawEllipse(hdc,this->centre,this->semiHorizontalLengthSquared,this->semiVerticalLengthSquared);
+    this->strategy->drawEllipse(hdc,this->centre,this->semiHorizontalLengthSquared,this->semiVerticalLengthSquared,this->color);
 }
 
 void EllipseArtist::handleConsole(HDC hdc)
@@ -34,5 +34,5 @@ void EllipseArtist::handleConsole(HDC hdc)
     std::cout << "Enter the semi-vertical axis length: ";
     std::cin >> b;
     this->centre = {x,y}, this->semiHorizontalLengthSquared = a*a, this->semiVerticalLengthSquared = b*b;
-    this->strategy->drawEllipse(hdc,this->centre,a*a,b*b);
+    this->strategy->drawEllipse(hdc,this->centre,a*a,b*b,this->color);
 }
