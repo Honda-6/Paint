@@ -1,7 +1,7 @@
 #include "SquareWindowPointClippingArtist.h"
 
 
-void SquareWindowPointClipping::clip(HDC hdc) {
+void SquareWindowPointClippingArtist::clip(HDC hdc) {
     int xLeft = std::min(this->clippingWindow.pointOne.x, this->clippingWindow.pointTwo.x);
     int yTop = std::min(this->clippingWindow.pointOne.y, this->clippingWindow.pointTwo.y);
     int xRight = std::max(this->clippingWindow.pointOne.x, this->clippingWindow.pointTwo.x);
@@ -9,7 +9,7 @@ void SquareWindowPointClipping::clip(HDC hdc) {
     cohenSutherland::clipPoint(hdc, this->p, xLeft, xRight, yBottom, yTop);
 }
 
-void SquareWindowPointClipping::onMouseLeftDown(HDC hdc, int x, int y) {
+void SquareWindowPointClippingArtist::onMouseLeftDown(HDC hdc, int x, int y) {
     if (this->clippingWindow.state == NOT_DRAWN)
         SquareWindowClippingArtist::onMouseLeftDown(hdc, x, y);
     else
@@ -19,7 +19,7 @@ void SquareWindowPointClipping::onMouseLeftDown(HDC hdc, int x, int y) {
     }
 }
 
-void SquareWindowPointClipping::handleConsole(HDC hdc) {
+void SquareWindowPointClippingArtist::handleConsole(HDC hdc) {
     if (this->clippingWindow.state == NOT_DRAWN)
         SquareWindowClippingArtist::handleConsole(hdc);
     else

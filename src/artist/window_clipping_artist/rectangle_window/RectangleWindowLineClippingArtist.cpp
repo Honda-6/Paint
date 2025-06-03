@@ -39,7 +39,7 @@ void RectangleWindowLineClippingArtist::handleConsole(HDC hdc)
         std::cin >> x1 >> y1;
         std::cout << "Enter the second point (X,Y): ";
         std::cin >> x2 >> y2;
-        this->line[0] = utils::Point<int>(x1,y2), this->line[1] = utils::Point<int>(x2,y2);
+        this->line[0] = utils::Point<int>(x1,y1), this->line[1] = utils::Point<int>(x2,y2);
         this->clip(hdc);
     }
 

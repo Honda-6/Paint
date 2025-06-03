@@ -2,7 +2,7 @@
 
 #include "SquareWindowClippingArtist.h"
 
-class SquareWindowPointClipping : public SquareWindowClippingArtist {
+class SquareWindowPointClippingArtist : public SquareWindowClippingArtist {
 private:
     utils::Point<int> p;
 protected:
@@ -10,5 +10,5 @@ protected:
 public:
     void onMouseLeftDown(HDC hdc, int x, int y) override;
     void handleConsole(HDC hdc) override;
-    ~SquareWindowPointClipping() = default;
+    ~SquareWindowPointClippingArtist() = default;
 };
