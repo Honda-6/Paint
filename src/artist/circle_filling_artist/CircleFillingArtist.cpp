@@ -26,7 +26,8 @@ void CircleFillingArtist::onMouseLeftUp(HDC hdc, int x, int y)
         else
             oct1 = (y > centre.y) ? FOURTH_OCTANT : FIFTH_OCTANT;
     }
-    oct2 = (oct1 + 4) % 8; // we will fill opposing octants only;
+    //oct2 = (oct1 + 4) % 8; // we will fill opposing octants only;
+    oct2 = (oct1 + 1) % 8; // we will fill adjacent octants only;
     this->fillCircle(hdc, radius, OCTANTS[oct1], OCTANTS[oct2]);
 }
 
