@@ -8,11 +8,19 @@
 #include "LineMidpointStrategy.h"
 #include "LineParametricStrategy.h"
 #include "GeneralPolygonFillArtist.h"
-#include "circle_filling_artist/CirclesFillingArtist.h"
-#include "circle_filling_artist/CircleLineFillingArtist.h"
+#include "CirclesFillingArtist.h"
+#include "CircleLineFillingArtist.h"
 #include "LineCircleWindowClippingArtist.h"
 #include "PointCircleWindowClippingArtist.h"
-
+#include "LineCircleWindowClippingArtist.h"
+#include "PointCircleWindowClippingArtist.h"
+#include "EllipseArtist.h"
+#include "CartesianEllipseStrat.h"
+#include "PolarEllipseStrat.h"
+#include "OptimizedPolarEllipseStrat.h"
+#include "SimpleMidPointEllipseStrat.h"
+#include "ImprovedMidPointEllipseStrat.h"
+#include "MidPointDDAEllipseStrat.h"
 using namespace std;
 
 ShapesMenu::ShapesMenu(Artist **artist, COLORREF *color) : artist(artist), color(color) { }
@@ -37,6 +45,7 @@ HMENU ShapesMenu::createMenu()
 bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
 {
     bool matches = true;
+    EllipseStrat* ellipseStrat;
     switch (wp)
     {
     case SHAPES_LINE_DDA:
@@ -108,14 +117,26 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         *artist = new CardinalSplineArtist();
         break;
     case SHAPES_ELLIPSE_DIRECT:
+    {
+        ellipseStrat = new CartesianEllipseStrat();
+        *artist = new EllipseArtist(ellipseStrat);
         // Handle Direct Ellipse drawing
         break;
+    }
     case SHAPES_ELLIPSE_POLAR:
+    {
+        ellipseStrat = new OptimizedPolarEllipseStrat();
+        *artist = new EllipseArtist(ellipseStrat);
         // Handle Polar Ellipse drawing
         break;
+    }
     case SHAPES_ELLIPSE_MIDPOINT:
+    {
+        ellipseStrat = new MidPointDDAEllipseStrat();
+        *artist = new EllipseArtist(ellipseStrat);
         // Handle LineMidpointStrategy Ellipse drawing
         break;
+    }
     case SHAPES_CLIPPING_RECTANGLE_POINT:
         // Handle Point Clipping in Rectangle
         break;
@@ -141,7 +162,6 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         matches = false;
         break;
     }
-
     (*artist)->setColor(*color);
 
     return matches;

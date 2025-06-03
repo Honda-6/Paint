@@ -8,7 +8,7 @@ file(GLOB_RECURSE HEADERS "src/*.h")
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${RESOURCES})
 
-target_include_directories(${PROJECT_NAME} PRIVATE src src/utilities src/menu src/artist src/artist/line_artist src/artist/polygon_scanline_artist)
+target_include_directories(${PROJECT_NAME} PRIVATE src src/utilities src/menu src/artist src/artist/line_artist src/artist/polygon_scanline_artist src/artist/ellipse_artist src/artist/ellipse_artist/ellipse_strats src/artist/circle_filling_artist)
 
 if(MSVC)
     target_compile_definitions(${PROJECT_NAME} PRIVATE WIN32 _WINDOWS)
