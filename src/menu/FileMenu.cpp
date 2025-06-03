@@ -19,14 +19,14 @@ bool FileMenu::handleEvent(HWND hwnd, WPARAM wp)
     case FILE_MENU_EXPORT:
         {
             HDC hdc = GetDC(hwnd);
-            fileManager->save(hdc, "out.bin");
+            fileManager->save(hdc, "data.bin");
             ReleaseDC(hwnd, hdc);
         }
         break;
     case FILE_MENU_IMPORT:
     {
         HDC hdc = GetDC(hwnd);
-        fileManager->load(hdc, "out.bin");
+        fileManager->load(hdc, "data.bin");
         ReleaseDC(hwnd, hdc);
     }
         break;
