@@ -27,6 +27,17 @@ void CardinalSplineArtist::onMouseRightDown(HDC hdc, int x, int y) {
 }
 
 void CardinalSplineArtist::handleConsole(HDC hdc) {
+    int n;
+    int x, y;
+    std::cout << "Enter the number of control points: ";
+    std::cin >> n;
+    while(n--) {
+        std::cout << "Enter a point (x, y): ";
+        std::cin >> x >> y;
+        control_points.emplace_back(x, y);
+    }
     std::cout << "Enter the smoothing factor: ";
     std::cin >> c;
+    drawCardinalSpline(hdc, control_points, c, color);
+    control_points.clear();
 }

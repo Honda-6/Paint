@@ -21,6 +21,11 @@
 #include "SimpleMidPointEllipseStrat.h"
 #include "ImprovedMidPointEllipseStrat.h"
 #include "MidPointDDAEllipseStrat.h"
+#include "FloodFillArtist.h"
+#include "FloodFillStrategy.h"
+#include "RecursiveFloodFill.h"
+#include "IterativeFloodFill.h"
+
 using namespace std;
 
 ShapesMenu::ShapesMenu(Artist **artist, COLORREF *color) : artist(artist), color(color) { }
@@ -34,6 +39,7 @@ HMENU ShapesMenu::createMenu()
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createCircleMenu(), LPCSTR("Circle"));
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createFillingCircleMenu(), LPCSTR("Filling Circle"));
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createFillingMenu(), LPCSTR("Filling"));
+    AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createFloodFillMenu(), LPCSTR("Flood Fill"));
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createEllipseMenu(), LPCSTR("Ellipse"));
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createClippingSquareMenu(), LPCSTR("Clipping Square"));
     AppendMenu(shapesMenu, MF_POPUP, (UINT_PTR)createClippingRectMenu(), LPCSTR("Clipping Rectange"));
@@ -44,6 +50,8 @@ HMENU ShapesMenu::createMenu()
 
 bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
 {
+    FloodFillStrategy* floodFillStrat;
+
     bool matches = true;
     EllipseStrat* ellipseStrat;
     switch (wp)
@@ -108,10 +116,12 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         *artist = new HermiteSquareFillArtist();
         break;
     case SHAPES_FLOOD_FILL_RECURSIVE:
-        // Handle Recursive Flood Fill
+        floodFillStrat = new RecursiveFloodFill();
+        *artist = new FloodFillArtist(floodFillStrat);
         break;
     case SHAPES_FLOOD_FILL_ITERATIVE:
-        // Handle Iterative Flood Fill
+        floodFillStrat = new IterativeFloodFill();
+        *artist = new FloodFillArtist(floodFillStrat);
         break;
     case SHAPES_CARDINAL_SPLINES:
         *artist = new CardinalSplineArtist();
