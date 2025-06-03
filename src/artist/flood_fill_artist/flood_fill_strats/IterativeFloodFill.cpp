@@ -3,7 +3,7 @@
 #include <queue>
 
 void IterativeFloodFill::floodFill(HDC hdc, int x, int y, COLORREF fillColor, COLORREF initialColor) {
-    std::queue<utils::Point> fill_points;
+    std::queue<utils::Point<int>> fill_points;
     fill_points.push(utils::Point(x, y));
 
     while(!fill_points.empty()) {

@@ -38,6 +38,6 @@ void CardinalSplineArtist::handleConsole(HDC hdc) {
     }
     std::cout << "Enter the smoothing factor: ";
     std::cin >> c;
-    drawCardinalSpline(hdc, control_points, c, COLOR_CRIMSON_RED);
+    drawCardinalSpline(hdc, control_points, c, color);
     control_points.clear();
 }
