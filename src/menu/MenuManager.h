@@ -1,5 +1,8 @@
 #include "Menu.h"
 #include "Artist.h"
+#include <thread>
+#include "MenuEntry.h"
+#include "MenuEntryManager.h"
 #include <map>
 
 using namespace std;
@@ -7,51 +10,21 @@ using namespace std;
 class MenuManager
 {
 public:
-    MenuManager(Artist **artist, COLORREF *color)
-    {
-        this->artist = artist;
+    MenuManager(Artist **artist, COLORREF *color);
 
-        menus.insert({LPCSTR("File"), new FileMenu()});
-        menus.insert({LPCSTR("Shapes"), new ShapesMenu(artist, color)});
-        menus.insert({LPCSTR("Color"), new ColorMenu(artist, color)});
-        menus.insert({LPCSTR("Cursor"), new CursorMenu()});
-    }
+    void setMenu(HWND hwnd);
 
-    void setMenu(HWND hwnd)
-    {
-        HMENU mainMenu = CreateMenu();
-        for (auto &menu : menus)
-        {
-            AppendMenu(mainMenu, MF_POPUP, (UINT_PTR)menu.second->createMenu(), menu.first);
-        }
-
-        AppendMenu(mainMenu, MF_STRING, CLEAR_SCREEN, LPCSTR("Clear"));
-        AppendMenu(mainMenu, MF_STRING, CONSOLE_INPUT, LPCSTR("Console Input"));
-
-        SetMenu(hwnd, mainMenu);
-    }
-
-    void handleInput(HWND hwnd, WPARAM wp)
-    {
-        for (auto &menu : menus)
-        {
-            if (menu.second->handleEvent(hwnd, wp))
-            {
-                break;
-            }
-        }
-        if (wp == CLEAR_SCREEN)
-        {
-            InvalidateRect(hwnd, NULL, TRUE);
-        }
-        else if (wp == CONSOLE_INPUT)
-        {
-            HDC hdc = GetDC(hwnd);
-            (*(artist))->handleConsole(hdc);
-        }
-    }
+    void handleInput(HWND hwnd, WPARAM wp);
 
 private:
     map<LPCSTR, Menu *> menus;
+    thread input;
+    HMENU mainMenu;
+    MenuEntry shapesEntry{nullptr}; 
+    MenuEntry consoleEntry{nullptr};
+    MenuEntryManager menuEntryManager;
+
     Artist **artist;
+
+    void handleConsole(HWND hwnd);
 };
