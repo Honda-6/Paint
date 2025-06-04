@@ -10,6 +10,10 @@
 #include "GeneralPolygonFillArtist.h"
 #include "CirclesFillingArtist.h"
 #include "CircleLineFillingArtist.h"
+#include "SquareWindowLineClippingArtist.h"
+#include "SquareWindowPointClippingArtist.h"
+#include "RectangleWindowLineClippingArtist.h"
+#include "RectangleWindowPointClippingArtist.h"
 #include "LineCircleWindowClippingArtist.h"
 #include "PointCircleWindowClippingArtist.h"
 #include "LineCircleWindowClippingArtist.h"
@@ -148,18 +152,22 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         break;
     }
     case SHAPES_CLIPPING_RECTANGLE_POINT:
+        *artist = new RectangleWindowPointClippingArtist();
         // Handle Point Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_RECTANGLE_LINE:
+        *artist = new RectangleWindowLineClippingArtist();
         // Handle LineStrategy Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_RECTANGLE_POLYGON:
         // Handle Polygon Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_SQUARE_POINT:
+        *artist = new SquareWindowPointClippingArtist();
         // Handle Point Clipping in Square
         break;
     case SHAPES_CLIPPING_SQUARE_LINE:
+        *artist = new SquareWindowLineClippingArtist();
         // Handle LineStrategy Clipping in Square
         break;
     case SHAPES_CLIPPING_CIRCLE_POINT:

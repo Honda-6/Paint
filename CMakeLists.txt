@@ -9,17 +9,25 @@ file(GLOB_RECURSE HEADERS "src/*.h")
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${RESOURCES})
 
-target_include_directories(${PROJECT_NAME} PRIVATE src src/utilities
-                                                    src/menu
-                                                    src/artist
-                                                    src/artist/line_artist
-                                                    src/artist/polygon_scanline_artist
-                                                    src/artist/ellipse_artist 
-                                                    src/artist/ellipse_artist/ellipse_strats 
-                                                    src/artist/circle_filling_artist
-                                                    src/artist/flood_fill_artist
-                                                    src/artist/flood_fill_artist/flood_fill_strats)
                                                     
+target_include_directories(${PROJECT_NAME} PRIVATE 
+    src 
+    src/utilities 
+    src/menu 
+    src/artist 
+    src/artist/line_artist 
+    src/artist/polygon_scanline_artist 
+    src/artist/ellipse_artist 
+    src/artist/ellipse_artist/ellipse_strats 
+    src/artist/circle_filling_artist 
+    src/artist/flood_fill_artist 
+    src/artist/flood_fill_artist/flood_fill_strats 
+    src/artist/window_clipping_artist 
+    src/artist/window_clipping_artist/square_window 
+    src/artist/window_clipping_artist/rectangle_window
+)                                                    
+                                                    
+
 if(MSVC)
     target_compile_definitions(${PROJECT_NAME} PRIVATE WIN32 _WINDOWS)
     set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
