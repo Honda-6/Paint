@@ -14,7 +14,7 @@ void RectangleWindowPolygonClippingArtist::onMouseLeftDown(HDC hdc, int x, int y
     if (this->clippingWindow.state == NOT_DRAWN)
         RectangleWindowClippingArtist::onMouseLeftDown(hdc, x, y);
     else
-        points.push_back(utils::Point<int>(x, y));
+        points.emplace_back(x, y);
 }
 
 void RectangleWindowPolygonClippingArtist::onMouseRightDown(HDC hdc, int x, int y)
@@ -28,16 +28,21 @@ void RectangleWindowPolygonClippingArtist::onMouseRightDown(HDC hdc, int x, int 
 }
 
 void RectangleWindowPolygonClippingArtist::handleConsole(HDC hdc) {
-    std::cout << "Enter number of points: ";
-    int n;
-    std::cin >> n;
-    std::cout << "Enter points (x y):" << std::endl;
-    for (int i = 0; i < n; i++) {
-        int x, y;
-        std ::cin >> x >> y;
-        points.push_back(utils::Point<int>{x,y});
+    if (clippingWindow.state == NOT_DRAWN) {
+        RectangleWindowClippingArtist::handleConsole(hdc);
     }
-    this->clip(hdc);
-    points.clear();
+    else {
+        std::cout << "Enter number of points: ";
+        int n;
+        std::cin >> n;
+        std::cout << "Enter points (x y):" << std::endl;
+        for (int i = 0; i < n; i++) {
+            int x, y;
+            std ::cin >> x >> y;
+            points.emplace_back(x, y);
+        }
+        this->clip(hdc);
+        points.clear();
+    }
 }
 
