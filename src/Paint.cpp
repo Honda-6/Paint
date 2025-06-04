@@ -13,6 +13,13 @@ static MenuManager menuManager(&artist, fileManager, &color);
 
 using namespace std;
 
+void attachConsole() {
+    AllocConsole();
+    freopen("CONOUT$", "w", stdout);
+    freopen("CONIN$", "r", stdin);
+    freopen("CONOUT$", "w", stderr);
+}
+
 LRESULT WINAPI WndProc(HWND hwnd, UINT m, WPARAM wp, LPARAM lp) {
     switch (m) {
     case WM_CREATE:
@@ -79,6 +86,8 @@ LRESULT WINAPI WndProc(HWND hwnd, UINT m, WPARAM wp, LPARAM lp) {
 
 int APIENTRY WinMain(HINSTANCE hi, HINSTANCE pi, LPSTR c, int ns)
 {
+    attachConsole();
+    
     WNDCLASS wc;
     wc.cbClsExtra = 0;
     wc.cbWndExtra = 0;

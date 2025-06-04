@@ -63,7 +63,12 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
     FloodFillStrategy* floodFillStrat;
 
     bool matches = true;
-    EllipseStrat* ellipseStrat;
+    EllipseStrat *ellipseStrat;
+
+    if (wp >= SHAPES_LINE_DDA && wp <= SHAPES_CLIPPING_CIRCLE_LINE)
+    {
+        delete *artist;
+    }
     switch (wp)
     {
     case SHAPES_LINE_DDA:

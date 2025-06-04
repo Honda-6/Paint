@@ -13,6 +13,7 @@ public:
     void onMouseLeftDown(HDC hdc, int x, int y);
     void onMouseLeftUp(HDC hdc, int x, int y);
     void handleConsole(HDC hdc);
+    ~LineArtist(); 
 
 private:
     int x1, y1, x2, y2;
