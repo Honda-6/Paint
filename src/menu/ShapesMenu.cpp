@@ -35,6 +35,7 @@
 #include "IterativePolarStrategy.h"
 #include "ModifiedMidointCircleStrategy.h"
 #include "PolarCircleStrategy.h"
+#include "RectancgleWindowPolygonClippingArtist.h"
 
 using namespace std;
 
@@ -186,7 +187,7 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         // Handle LineStrategy Clipping in Rectangle
         break;
     case SHAPES_CLIPPING_RECTANGLE_POLYGON:
-        // Handle Polygon Clipping in Rectangle
+        *artist = new RectangleWindowPolygonClippingArtist();
         break;
     case SHAPES_CLIPPING_SQUARE_POINT:
         *artist = new SquareWindowPointClippingArtist();
