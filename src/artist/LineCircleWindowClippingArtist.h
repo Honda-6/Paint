@@ -3,7 +3,7 @@
 #include "Artist.h"
 #include "LineStrategy.h"
 #include "Utils.h"
-
+#include "CircleStrategy.h"
 enum LineCircleWindowClippingState {
     LINE_CIRCLE_WINDOW_CLIPPING_STATE_CIRCLE_WINDOW,
     LINE_CIRCLE_WINDOW_CLIPPING_STATE_LINE_CLIPPING
@@ -16,8 +16,8 @@ private:
     double r;
 
     LineStrategy *line;
-    // TODO: Add circle drawing strategy to draw the window.
-    // CircleStrategy *circle;
+    CircleStrategy *circle;
+
 
     bool clipLine();
 
