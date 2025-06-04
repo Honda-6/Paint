@@ -3,6 +3,7 @@
 #include "NullArtist.h"
 #include "MenuManager.h"
 
+
 static COLORREF color = RGB(0, 0, 0);
 static Artist *artist = new NullArtist();
 

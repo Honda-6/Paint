@@ -1,6 +1,6 @@
 #include "CirclesFillingArtist.h"
 
-void CirclesFillingArtist::fillCircle(HDC hdc,unsigned int radius, utils::Point<int> (*firstOctant)(const utils::Point<int>&,int,int),utils::Point<int> (*secondOctant)(const utils::Point<int>&,int,int), COLORREF color) {
+void CirclesFillingArtist::fillCircle(HDC hdc,unsigned int radius, utils::Point<int> (*firstOctant)(const utils::Point<int>&,int,int),utils::Point<int> (*secondOctant)(const utils::Point<int>&,int,int)) {
     for(int X {1}; X <= radius; ++X)
     {
         int y = 0, x = X;
@@ -18,7 +18,7 @@ void CirclesFillingArtist::fillCircle(HDC hdc,unsigned int radius, utils::Point<
             else
                 decisionVar += dNode;
 
-            dOne += 4, dNode += 4;
+            dOne += 2, dNode += 2;
             y++;
             SetPixel(hdc,firstOctant(centre,x,y).x,firstOctant(centre,x,y).y,color);
             SetPixel(hdc,secondOctant(centre,x,y).x,secondOctant(centre,x,y).y,color);

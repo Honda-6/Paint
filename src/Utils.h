@@ -55,6 +55,15 @@ namespace utils {
     }
     static void drawHermite(HDC hdc, int x1, int y1, int u1, int v1, int x2, int y2, int u2, int v2, int numpoints, COLORREF color)
     {
+    static void drawFourPixels(HDC hdc, const Point<int> &centre, int x, int y, COLORREF color)
+    {
+        SetPixel(hdc,centre.x + x, centre.y + y, color);
+        SetPixel(hdc,centre.x + x, centre.y - y, color);
+        SetPixel(hdc,centre.x - x, centre.y + y, color);
+        SetPixel(hdc,centre.x - x, centre.y - y, color);
+    }
+    static void drawHermite(HDC hdc, int x1, int y1, int u1, int v1, int x2, int y2, int u2, int v2, int numpoints, COLORREF color) {
+
         Matrix<int, 4, 4> H({
             {2, 1, -2, 1},
             {-3, -2, 3, -1},
