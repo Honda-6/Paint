@@ -20,6 +20,9 @@
 #include "PointCircleWindowClippingArtist.h"
 #include "EllipseArtist.h"
 #include "CartesianEllipseStrat.h"
+#include "CircleArtist.h"
+#include "DirectCircleStrategy.h"
+#include "MidpointCircleStrategy.h"
 #include "PolarEllipseStrat.h"
 #include "OptimizedPolarEllipseStrat.h"
 #include "SimpleMidPointEllipseStrat.h"
@@ -29,6 +32,9 @@
 #include "FloodFillStrategy.h"
 #include "RecursiveFloodFill.h"
 #include "IterativeFloodFill.h"
+#include "IterativePolarStrategy.h"
+#include "ModifiedMidointCircleStrategy.h"
+#include "PolarCircleStrategy.h"
 
 using namespace std;
 
@@ -82,19 +88,34 @@ bool ShapesMenu::handleEvent(HWND hwnd, WPARAM wp)
         }
         break;
     case SHAPES_CIRCLE_DIRECT:
-        // Handle Direct circle drawing
+        {
+            CircleStrategy *circle = new DirectCircleStrategy();
+            *artist = new CircleArtist(circle);
+        }
         break;
     case SHAPES_CIRCLE_POLAR:
-        // Handle Polar circle drawing
+        {
+            CircleStrategy *circle = new PolarCircleStrategy();
+            *artist = new CircleArtist(circle);
+        }
         break;
     case SHAPES_CIRCLE_ITERATIVE_POLAR:
-        // Handle Iterative Polar circle drawing
+        {
+            CircleStrategy *circle = new IterativePolarStrategy();
+            *artist = new CircleArtist(circle);
+        }
         break;
     case SHAPES_CIRCLE_MIDPOINT:
-        // Handle Midpoint circle drawing
+        {
+            CircleStrategy *circle = new MidpointCircleStrategy();
+            *artist = new CircleArtist(circle);
+        }
         break;
     case SHAPES_CIRCLE_MODIFIED_MIDPOINT:
-        // Handle Modified Midpoint circle drawing
+        {
+            CircleStrategy *circle = new ModifiedMidpointCircleStrategy();
+            *artist = new CircleArtist(circle);
+        }
         break;
     case SHAPES_FILLING_CIRCLE_LINES:
         *artist = new CircleLineFillingArtist();
