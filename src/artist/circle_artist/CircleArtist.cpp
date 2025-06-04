@@ -5,6 +5,10 @@ CircleArtist::CircleArtist(CircleStrategy *circle) {
     this->circle = circle;
 }
 
+CircleArtist::~CircleArtist() {
+    delete circle;
+}
+
 
 void CircleArtist::onMouseLeftDown(HDC hdc, int x, int y) {
     xc = x;

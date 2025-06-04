@@ -8,7 +8,7 @@ void MidpointCircleStrategy::draw(HDC hdc, int xc, int yc, int r, COLORREF color
     utils::draw8Points(hdc, xc, yc, x, y, color);
 
     while (x < y) {
-        double d = (x+1)*(x+1) + (y-0.5)*(y-0.5) - r*r;
+        int d = (x + 1) * (x + 1) + y * y - y - r * r;
         if (d > 0) y--;
         x++;
         utils::draw8Points(hdc, xc, yc, x, y, color);

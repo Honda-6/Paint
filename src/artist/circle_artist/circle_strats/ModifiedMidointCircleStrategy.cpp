@@ -14,19 +14,17 @@ void ModifiedMidpointCircleStrategy::draw(HDC hdc, int xc, int yc, int r, COLORR
     while (x < y) {
         // inside
         if (d < 0) {
-            x++;
             d += dda1;
-            dda1 += 2;
             dda2 += 2;
         }
         // outside
         else {
-            x++;
             y--;
             d += dda2;
-            dda1 += 2;
             dda2 += 4;
         }
+        x++;
+        dda1 += 2;
         utils::draw8Points(hdc, xc, yc, x, y, c);
     }
 
