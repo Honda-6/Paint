@@ -2,6 +2,7 @@
 #include "Artist.h"
 #include "NullArtist.h"
 #include "MenuManager.h"
+#include <iostream>
 
 
 static COLORREF color = RGB(0, 0, 0);
@@ -10,6 +11,13 @@ static Artist *artist = new NullArtist();
 static MenuManager menuManager(&artist, &color);
 
 using namespace std;
+
+void attachConsole() {
+    AllocConsole();
+    freopen("CONOUT$", "w", stdout);
+    freopen("CONIN$", "r", stdin);
+    freopen("CONOUT$", "w", stderr);
+}
 
 LRESULT WINAPI WndProc(HWND hwnd, UINT m, WPARAM wp, LPARAM lp) {
     switch (m) {
@@ -77,6 +85,8 @@ LRESULT WINAPI WndProc(HWND hwnd, UINT m, WPARAM wp, LPARAM lp) {
 
 int APIENTRY WinMain(HINSTANCE hi, HINSTANCE pi, LPSTR c, int ns)
 {
+    attachConsole();
+    
     WNDCLASS wc;
     wc.cbClsExtra = 0;
     wc.cbWndExtra = 0;
