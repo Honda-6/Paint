@@ -34,8 +34,6 @@ void MenuManager::setMenu(HWND hwnd)
     menuEntryManager.addMenuEntry(shapesEntry);
     menuEntryManager.addMenuEntry(consoleEntry);
 
-    // disableList.push_back(GetMenuItemCount(mainMenu) - 1);
-
     SetMenu(hwnd, mainMenu);
 }
 
