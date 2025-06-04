@@ -3,7 +3,7 @@
 REM [CONFIGURATION]
 
 REM Compiler flags
-set CXXFLAGS=-mwindows -std=c++17 -Isrc -Isrc/utilities -Isrc/menu -Isrc/artist -Isrc/artist/line_artist -Isrc/artist/polygon_scanline_artist -Isrc/artist/ellipse_artist -Isrc/artist/ellipse_artist/ellipse_strats -Isrc/artist/circle_filling_artist -Isrc/artist/flood_fill_artist -Isrc/artist/flood_fill_artist/flood_fill_strats
+set CXXFLAGS=-mwindows -std=c++17 -Isrc -Isrc/menu -Isrc/artist -Isrc/artist/line_artist/line_strats -Isrc/artist/line_artist -Isrc/artist/polygon_scanline_artist -Isrc/artist/ellipse_artist -Isrc/artist/ellipse_artist/ellipse_strats -Isrc/artist/circle_filling_artist -Isrc/artist/flood_fill_artist -Isrc/artist/flood_fill_artist/flood_fill_strats
 
 REM Output executable
 set OUTPUT=build\Paint.exe

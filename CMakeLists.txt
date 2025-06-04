@@ -9,9 +9,10 @@ file(GLOB_RECURSE HEADERS "src/*.h")
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${RESOURCES})
 
-target_include_directories(${PROJECT_NAME} PRIVATE src src/utilities
+target_include_directories(${PROJECT_NAME} PRIVATE src
                                                     src/menu
                                                     src/artist
+                                                    src/artist/line_artist/line_strats
                                                     src/artist/line_artist
                                                     src/artist/polygon_scanline_artist
                                                     src/artist/ellipse_artist 
