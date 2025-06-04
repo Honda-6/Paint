@@ -25,6 +25,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     src/artist/window_clipping_artist 
     src/artist/window_clipping_artist/square_window 
     src/artist/window_clipping_artist/rectangle_window
+    src/artist/circle_artist
+    src/artist/circle_artist/circle_strats
 )                                                    
                                                     
 
