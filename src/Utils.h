@@ -106,30 +106,5 @@ namespace utils {
         SetPixel(hdc, xc - b, yc - a, c);
     }
 
-    // TODO: REMOVE ME
-    static void drawCircle(HDC hdc, int xc, int yc, int R, COLORREF c) {
-        int x = 0;
-        int y = R;
-        int d = 1 - R;
-        int dd1 = 3;
-        int dd2 = 5 - 2 * R;
-        
-        draw8Points(hdc, xc, yc, x, y, c);
 
-        while (x <= y) {
-            if (d > 0) {
-                d += dd2;
-                dd2 += 4;
-                y--;
-            } else {
-                d += dd1;
-                dd2 += 2;
-            }
-
-            dd1 += 2;
-
-            x++;
-            draw8Points(hdc, xc, yc, x, y, c);
-        }
-    }
 };
