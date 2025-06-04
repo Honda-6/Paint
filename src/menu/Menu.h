@@ -4,6 +4,7 @@
 #include "Core.h"
 #include "ColorPicker.h"
 #include "Artist.h"
+#include "FileManager.h"
 
 using namespace std;
 
@@ -81,7 +82,11 @@ public:
 
 class FileMenu : public Menu
 {
+private:
+    FileManager *fileManager;
+
 public:
+    FileMenu(FileManager *fileManager) : fileManager(fileManager) {}
     bool handleEvent(HWND hwnd, WPARAM wp) override;
     HMENU createMenu() override;
 };

@@ -2,13 +2,14 @@
 #include "Artist.h"
 #include "NullArtist.h"
 #include "MenuManager.h"
-#include <iostream>
+#include "FileManager.h"
 
 
 static COLORREF color = RGB(0, 0, 0);
 static Artist *artist = new NullArtist();
+static FileManager *fileManager = new FileManager();
 
-static MenuManager menuManager(&artist, &color);
+static MenuManager menuManager(&artist, fileManager, &color);
 
 using namespace std;
 

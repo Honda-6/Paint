@@ -10,7 +10,7 @@ using namespace std;
 class MenuManager
 {
 public:
-    MenuManager(Artist **artist, COLORREF *color);
+    MenuManager(Artist **artist, FileManager *fileManager, COLORREF *color);
 
     void setMenu(HWND hwnd);
 

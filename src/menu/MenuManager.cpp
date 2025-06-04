@@ -1,10 +1,10 @@
 #include "MenuManager.h"
 
-MenuManager::MenuManager(Artist **artist, COLORREF *color)
+MenuManager::MenuManager(Artist **artist, FileManager *fileManager, COLORREF *color)
 {
     this->artist = artist;
 
-    menus.insert({LPCSTR("File"), new FileMenu()});
+    menus.insert({LPCSTR("File"), new FileMenu(fileManager)});
     menus.insert({LPCSTR("Shapes"), new ShapesMenu(artist, color)});
     menus.insert({LPCSTR("Color"), new ColorMenu(artist, color)});
     menus.insert({LPCSTR("Cursor"), new CursorMenu()});
