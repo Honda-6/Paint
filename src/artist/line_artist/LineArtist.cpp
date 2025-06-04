@@ -35,3 +35,5 @@ void LineArtist::handleConsole(HDC hdc)
 
     line->draw(hdc, x1, y1, x2, y2, color);
 }
+
+LineArtist::~LineArtist() { delete line; }
