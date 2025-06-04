@@ -23,6 +23,8 @@ enum MenuType
 
     CLEAR_SCREEN,
 
+    CONSOLE_INPUT,
+
     // Line algorithms
     SHAPES_LINE_DDA,
     SHAPES_LINE_MIDPOINT,

@@ -16,6 +16,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     src/menu 
     src/artist 
     src/artist/line_artist 
+    src/artist/line_artist/line_strats
     src/artist/polygon_scanline_artist 
     src/artist/ellipse_artist 
     src/artist/ellipse_artist/ellipse_strats 
