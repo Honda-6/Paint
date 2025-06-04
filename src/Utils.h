@@ -53,6 +53,7 @@ namespace utils {
     {
         return {(p2.x - p1.x) * (Y - p1.y) / (p2.y - p1.y) + p1.x, Y};
     }
+
     static void drawFourPixels(HDC hdc, const Point<int> &centre, int x, int y, COLORREF color)
     {
         SetPixel(hdc,centre.x + x, centre.y + y, color);
