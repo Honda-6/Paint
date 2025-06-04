@@ -1,6 +1,5 @@
 #include "Menu.h"
-#include "artist/Artist.h"
-#include "artist/HermiteSquareFillArtist.h"
+#include "Artist.h"
 #include <map>
 
 using namespace std;
@@ -10,6 +9,8 @@ class MenuManager
 public:
     MenuManager(Artist **artist, COLORREF *color)
     {
+        this->artist = artist;
+
         menus.insert({LPCSTR("File"), new FileMenu()});
         menus.insert({LPCSTR("Shapes"), new ShapesMenu(artist, color)});
         menus.insert({LPCSTR("Color"), new ColorMenu(artist, color)});
@@ -25,6 +26,7 @@ public:
         }
 
         AppendMenu(mainMenu, MF_STRING, CLEAR_SCREEN, LPCSTR("Clear"));
+        AppendMenu(mainMenu, MF_STRING, CONSOLE_INPUT, LPCSTR("Console Input"));
 
         SetMenu(hwnd, mainMenu);
     }
@@ -42,8 +44,14 @@ public:
         {
             InvalidateRect(hwnd, NULL, TRUE);
         }
+        else if (wp == CONSOLE_INPUT)
+        {
+            HDC hdc = GetDC(hwnd);
+            (*(artist))->handleConsole(hdc);
+        }
     }
 
 private:
     map<LPCSTR, Menu *> menus;
+    Artist **artist;
 };
