@@ -1,15 +1,16 @@
 #include "LineCircleWindowClippingArtist.h"
 #include "LineMidpointStrategy.h"
-#include "MidpointCircleStrategy.h"
 #include "Palette.h"
 #include <iostream>
+
+#include "ModifiedMidointCircleStrategy.h"
 
 using namespace std;
 
 LineCircleWindowClippingArtist::LineCircleWindowClippingArtist() {
     state = LINE_CIRCLE_WINDOW_CLIPPING_STATE_CIRCLE_WINDOW;
     line = new LineMidpointStrategy();
-    circle = new MidpointCircleStrategy();
+    circle = new ModifiedMidpointCircleStrategy();
 }
 
 LineCircleWindowClippingArtist::~LineCircleWindowClippingArtist() {
