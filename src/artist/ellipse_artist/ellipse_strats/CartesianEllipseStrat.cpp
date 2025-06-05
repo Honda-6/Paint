@@ -6,7 +6,7 @@ void CartesianEllipseStrat::drawEllipse(HDC hdc, const utils::Point<int> &centre
     
     utils::drawFourPixels(hdc, centre, round(x), round(y), color);
     y++;
-    while (x * semiVerticalLengthSquared >= y * semiHorizontalLengthSquared)
+    while (x * semiVerticalLengthSquared > y * semiHorizontalLengthSquared)
     {
         x = std::sqrt(semiHorizontalLengthSquared * (1 - (y * y) / semiVerticalLengthSquared));
         utils::drawFourPixels(hdc, centre, round(x), round(y), color);
