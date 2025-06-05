@@ -15,16 +15,8 @@ void FloodFillArtist::onMouseLeftUp(HDC hdc, int x, int y) {
 
 void FloodFillArtist::handleConsole(HDC hdc) {
     int x, y;
-    int r, g, b;
     std::cout << "Enter a point (x, y) inside a drawn shape: ";
     std::cin >> x >> y;
-    std::cout << "Enter the filling color:\n";
-    std::cout << "red intensity -> ";
-    std::cin >> r;
-    std::cout << "green intensity -> ";
-    std::cin >> g;
-    std::cout << "blue intensity -> ";
-    std::cin >> b;
     initialColor = GetPixel(hdc, x, y);
     strategy->floodFill(hdc, x, y, color, initialColor);
 }
