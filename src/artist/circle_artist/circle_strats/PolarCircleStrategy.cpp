@@ -2,6 +2,10 @@
 #include "Utils.h"
 #include <cmath>
 
+#ifndef M_PI_4
+#define M_PI_4 0.7853981633974483 //    pi/4
+#endif
+
 void PolarCircleStrategy::draw(HDC hdc, int xc, int yc, int r, COLORREF color) {
     double step = 1.0 / r;
 

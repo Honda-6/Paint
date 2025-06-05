@@ -29,9 +29,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     src/artist/circle_artist
     src/artist/circle_artist/circle_strats
 )                                                    
-                                                    
 
-if(MSVC)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE WIN32 _WINDOWS)
-    set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
-endif()
+if (MINGW)
+    target_compile_options(${PROJECT_NAME} PRIVATE -mwindows)
+    target_link_options(${PROJECT_NAME} PRIVATE -mwindows)
+endif ()
