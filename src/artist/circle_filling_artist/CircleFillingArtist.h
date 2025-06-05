@@ -4,8 +4,8 @@
 #include "Artist.h"
 #include "Palette.h"
 #include "Utils.h"
+#include "ModifiedMidointCircleStrategy.h"
 #include <iostream>
-
 /*
     An array of pointer to function returning a point on an octant,
     they are ordered according to the octants i.e each index corresponds to the octant number in the Clockwise direction according to the coordinate system of the window.
