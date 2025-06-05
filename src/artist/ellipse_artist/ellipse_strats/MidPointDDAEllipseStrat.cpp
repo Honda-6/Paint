@@ -28,7 +28,7 @@ void MidPointDDAEllipseStrat::drawEllipse(HDC hdc, const utils::Point<int> &cent
     // ddaChangeOne is the value added to the decision variable if there is no change in y meanwhile the other is when y is decremented
     int ddaChangeOne = 3 * semiVerticalLengthSquared, ddaChangeTwo = ddaChangeOne + TWO_A_SQUARED * (1 - y);
     utils::drawFourPixels(hdc,centre,x,y,color);
-    while(ddaDiffX <= ddaDiffY)
+    while(ddaDiffX < ddaDiffY)
     {
         if(decisionVar >= 0)
         {
@@ -58,7 +58,7 @@ void MidPointDDAEllipseStrat::drawEllipse(HDC hdc, const utils::Point<int> &cent
     ddaDiffX = x * semiVerticalLengthSquared, ddaDiffY = 0;
     decisionVar = - semiVerticalLengthSquared * x + semiHorizontalLengthSquared + semiVerticalLengthSquared/4;
     ddaChangeOne = 3 * semiHorizontalLengthSquared, ddaChangeTwo = ddaChangeOne + TWO_B_SQUARED * (1 - x);
-    while(ddaDiffX >= ddaDiffY)
+    while(ddaDiffX > ddaDiffY)
     {
         if(decisionVar >= 0)
         {

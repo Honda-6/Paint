@@ -9,7 +9,7 @@ void SimpleMidPointEllipseStrat::drawEllipse(HDC hdc, const utils::Point<int> &c
     int ddaDiffX = x * semiVerticalLengthSquared, ddaDiffY = 0;
 
     utils::drawFourPixels(hdc,centre,x,y,color);
-    while(ddaDiffX >= ddaDiffY)
+    while(ddaDiffX > ddaDiffY)
     {
         decisionVar = semiVerticalLengthSquared * x * x - semiVerticalLengthSquared * x + semiVerticalLengthSquared/4 + semiHorizontalLengthSquared * y * y + TWO_A_SQUARED * y + semiHorizontalLengthSquared - semiHorizontalLengthSquared * semiVerticalLengthSquared ;
         if(decisionVar >= 0)

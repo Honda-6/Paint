@@ -28,6 +28,8 @@ void CircleFillingArtist::onMouseLeftUp(HDC hdc, int x, int y)
     }
     //oct2 = (oct1 + 4) % 8; // we will fill opposing octants only;
     oct2 = (oct1 + 1) % 8; // we will fill adjacent octants only;
+    ModifiedMidpointCircleStrategy strategy;
+    strategy.draw(hdc, centre.x, centre.y, radius, this->color);
     this->fillCircle(hdc, radius, OCTANTS[oct1], OCTANTS[oct2]);
 }
 
@@ -58,5 +60,7 @@ void CircleFillingArtist::handleConsole(HDC hdc)
         std::cin >> oct1 >> oct2;
     }
     this->centre = {x, y};
+    ModifiedMidpointCircleStrategy strategy;
+    strategy.draw(hdc, centre.x, centre.y, radius, this->color);
     this->fillCircle(hdc, radius, OCTANTS[oct1 - 1], OCTANTS[oct2 - 1]);
 }
