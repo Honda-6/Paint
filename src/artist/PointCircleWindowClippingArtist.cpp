@@ -2,12 +2,18 @@
 #include "Palette.h"
 #include <iostream>
 
+#include "ModifiedMidointCircleStrategy.h"
+
 using namespace std;
 
 PointCircleWindowClippingArtist::PointCircleWindowClippingArtist() {
     state = POINT_CIRCLE_WINDOW_CLIPPING_STATE_CIRCLE_WINDOW;
+    circle = new ModifiedMidpointCircleStrategy();
 }
 
+PointCircleWindowClippingArtist::~PointCircleWindowClippingArtist() {
+    delete circle;
+}
 void PointCircleWindowClippingArtist::onMouseLeftDown(HDC hdc, int x, int y) {
     if (state == POINT_CIRCLE_WINDOW_CLIPPING_STATE_CIRCLE_WINDOW) {
         pc.x = x;
@@ -21,9 +27,8 @@ void PointCircleWindowClippingArtist::onMouseLeftUp(HDC hdc, int x, int y) {
     if (state == POINT_CIRCLE_WINDOW_CLIPPING_STATE_CIRCLE_WINDOW) {
         r = sqrt(utils::distanceSquared(pc, p));
 
-        // TODO: Remove drawCircle and use CircleStrategy once implemented.
-        utils::drawCircle(hdc, pc.x, pc.y, r, COLOR_CRIMSON_RED);
-        // circle->draw(hdc, pc.x, pc.y, r, COLOR_CRIMSON_RED);
+
+         circle->draw(hdc, pc.x, pc.y, r, COLOR_CRIMSON_RED);
         state = POINT_CIRCLE_WINDOW_CLIPPING_STATE_POINT_CLIPPING;
     } else {
         if (clipPoint(p)) {
@@ -42,9 +47,8 @@ void PointCircleWindowClippingArtist::handleConsole(HDC hdc) {
         cin >> pc.x >> pc.y >> r;
     }
 
-    // TODO: Remove drawCircle and use CircleStrategy once implemented.
-    utils::drawCircle(hdc, pc.x, pc.y, r, COLOR_CRIMSON_RED);
-    // circle->draw(hdc, pc.x, pc.y, r, COLOR_CRIMSON_RED);
+
+    circle->draw(hdc, pc.x, pc.y, r, COLOR_CRIMSON_RED);
 
     bool shouldInputLine = true;
     while (shouldInputLine) {
